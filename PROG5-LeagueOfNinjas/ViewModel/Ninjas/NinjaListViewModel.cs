@@ -8,6 +8,7 @@ using PROG5_LeagueOfNinjas.Data;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
+using PROG5_LeagueOfNinjas.View.Ninjas;
 
 namespace PROG5_LeagueOfNinjas.ViewModel.Ninjas
 {
@@ -15,6 +16,7 @@ namespace PROG5_LeagueOfNinjas.ViewModel.Ninjas
     {
         private LeagueOfNinjasDatabaseEntities _database;
         private Ninja _selectedNinja;
+        private NinjaCreateView _createView;
 
         public ICommand NinjaAddCommand { get; set; }
         public ICommand NinjaEditCommand { get; set; }
@@ -24,7 +26,7 @@ namespace PROG5_LeagueOfNinjas.ViewModel.Ninjas
         {
             _database = database;
 
-            NinjaAddCommand = new RelayCommand(AddNinja);
+            NinjaAddCommand = new RelayCommand(OpenCreateWindow);
             NinjaEditCommand = new RelayCommand(EditNinja);
             NinjaDeleteCommand = new RelayCommand(DeleteNinja);
         }
@@ -59,9 +61,16 @@ namespace PROG5_LeagueOfNinjas.ViewModel.Ninjas
             }
         }
 
-        public void AddNinja()
+        public void OpenCreateWindow()
         {
+            _createView = new NinjaCreateView();
+            _createView.ShowDialog();
+        }
 
+        public void CloseCreateWindow()
+        {
+            _createView.Close();
+            RaisePropertyChanged("Ninjas");
         }
 
         public void EditNinja()

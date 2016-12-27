@@ -59,7 +59,15 @@ namespace PROG5_LeagueOfNinjas.ViewModel
         {
             get
             {
-                return new NinjaListViewModel(Database);
+                return ServiceLocator.Current.GetInstance<NinjaListViewModel>();
+            }
+        }
+
+        public NinjaCreateViewModel NinjaCreateViewModel
+        {
+            get
+            {
+                return new NinjaCreateViewModel(NinjaListViewModel, Database);
             }
         }
         #endregion
