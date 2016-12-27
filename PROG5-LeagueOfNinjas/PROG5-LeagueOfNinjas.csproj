@@ -120,6 +120,8 @@
     <Compile Include="Data\Ninja.cs">
       <DependentUpon>Database.tt</DependentUpon>
     </Compile>
+    <Compile Include="Validation\IntLowerThan1ValidationRule.cs" />
+    <Compile Include="Validation\StringNotNullAndNotEmptyValidationRule.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\Ninjas\NinjaEditViewModel.cs" />
     <Compile Include="ViewModel\Ninjas\NinjaCreateViewModel.cs" />

@@ -14,6 +14,8 @@ namespace PROG5_LeagueOfNinjas.ViewModel.Ninjas
     public class NinjaCreateViewModel : ViewModelBase
     {
         private Ninja _ninja;
+        private string _ninjaName;
+        private int _ninjaGold;
         private NinjaListViewModel _listViewModel;
         private LeagueOfNinjasDatabaseEntities _database;
 
@@ -23,6 +25,8 @@ namespace PROG5_LeagueOfNinjas.ViewModel.Ninjas
         public NinjaCreateViewModel(NinjaListViewModel listViewModel, LeagueOfNinjasDatabaseEntities database)
         {
             _ninja = new Ninja();
+            _ninjaName = "New Ninja";
+            _ninjaGold = 500;
             _listViewModel = listViewModel;
             _database = database;
 
@@ -44,6 +48,34 @@ namespace PROG5_LeagueOfNinjas.ViewModel.Ninjas
             }
         }
 
+        public string NinjaName
+        {
+            get
+            {
+                return _ninjaName;
+            }
+
+            set
+            {
+                _ninjaName = value;
+                RaisePropertyChanged("NinjaName");
+            }
+        }
+
+        public int NinjaGold
+        {
+            get
+            {
+                return _ninjaGold;
+            }
+
+            set
+            {
+                _ninjaGold = value;
+                RaisePropertyChanged("NinjaGold");
+            }
+        }
+
         public void Cancel()
         {
             _listViewModel.CloseCreateWindow();
@@ -51,6 +83,8 @@ namespace PROG5_LeagueOfNinjas.ViewModel.Ninjas
 
         public void Save()
         {
+            _ninja.Name = NinjaName;
+            _ninja.Gold = NinjaGold;
             _database.Ninjas.Add(_ninja);
             _database.SaveChanges();
             _listViewModel.CloseCreateWindow();
