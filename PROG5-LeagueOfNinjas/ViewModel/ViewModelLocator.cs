@@ -70,6 +70,14 @@ namespace PROG5_LeagueOfNinjas.ViewModel
                 return new NinjaCreateViewModel(NinjaListViewModel, Database);
             }
         }
+
+        public NinjaEditViewModel NinjaEditViewModel
+        {
+            get
+            {
+                return new NinjaEditViewModel(NinjaListViewModel, Database);
+            }
+        }
         #endregion
 
         public static void Cleanup()

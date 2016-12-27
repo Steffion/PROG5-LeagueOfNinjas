@@ -17,6 +17,7 @@ namespace PROG5_LeagueOfNinjas.ViewModel.Ninjas
         private LeagueOfNinjasDatabaseEntities _database;
         private Ninja _selectedNinja;
         private NinjaCreateView _createView;
+        private NinjaEditView _editView;
 
         public ICommand NinjaAddCommand { get; set; }
         public ICommand NinjaEditCommand { get; set; }
@@ -75,12 +76,21 @@ namespace PROG5_LeagueOfNinjas.ViewModel.Ninjas
 
         public void EditNinja()
         {
+            _editView = new NinjaEditView();
+            _editView.ShowDialog();
+        }
 
+        public void CloseEditWindow()
+        {
+            _editView.Close();
+            RaisePropertyChanged("Ninjas");
         }
 
         public void DeleteNinja()
         {
-
+            _database.Ninjas.Remove(_selectedNinja);
+            _database.SaveChanges();
+            RaisePropertyChanged("Ninjas");
         }
     }
 }
