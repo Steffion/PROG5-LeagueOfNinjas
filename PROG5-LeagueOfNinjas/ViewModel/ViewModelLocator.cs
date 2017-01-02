@@ -16,6 +16,7 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
 using PROG5_LeagueOfNinjas.Data;
+using PROG5_LeagueOfNinjas.ViewModel.Ninjas;
 
 namespace PROG5_LeagueOfNinjas.ViewModel
 {
@@ -34,6 +35,7 @@ namespace PROG5_LeagueOfNinjas.ViewModel
 
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<LeagueOfNinjasDatabaseEntities>();
+            SimpleIoc.Default.Register<NinjaListViewModel>();
         }
 
         public MainViewModel Main
@@ -51,6 +53,32 @@ namespace PROG5_LeagueOfNinjas.ViewModel
                 return ServiceLocator.Current.GetInstance<LeagueOfNinjasDatabaseEntities>();
             }
         }
+
+        #region Ninja CRUD
+        public NinjaListViewModel NinjaListViewModel
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<NinjaListViewModel>();
+            }
+        }
+
+        public NinjaCreateViewModel NinjaCreateViewModel
+        {
+            get
+            {
+                return new NinjaCreateViewModel(NinjaListViewModel, Database);
+            }
+        }
+
+        public NinjaEditViewModel NinjaEditViewModel
+        {
+            get
+            {
+                return new NinjaEditViewModel(NinjaListViewModel, Database);
+            }
+        }
+        #endregion
 
         public static void Cleanup()
         {
