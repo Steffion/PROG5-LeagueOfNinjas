@@ -1,0 +1,30 @@
+﻿<Window x:Class="PROG5_LeagueOfNinjas.View.Ninjas.EquipmentListView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PROG5_LeagueOfNinjas.View.Ninjas"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Title="Jouw ninja's" Height="500" Width="500"
+        DataContext="{Binding Source={StaticResource Locator}, Path=EquipmentListViewModel}">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.5*" />
+            <ColumnDefinition Width="0.5*" />
+        </Grid.ColumnDefinitions>
+        <ListBox Grid.Column="0" SelectedItem="{Binding SelectedNinja}" ItemsSource="{Binding Ninjas}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Name}" />
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Button Grid.Row="0" Margin="20,5" Command="{Binding EquipmentEditCommand}">Equipment aanpassen</Button>
+        </Grid>
+    </Grid>
+</Window>
