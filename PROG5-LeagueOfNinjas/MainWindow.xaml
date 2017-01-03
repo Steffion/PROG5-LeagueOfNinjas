@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PROG5_LeagueOfNinjas"
         mc:Ignorable="d"
-        DataContext="{Binding , Source={StaticResource Locator}}" 
+        DataContext="{Binding Source={StaticResource Locator}, Path=Main}" 
         d:DesignWidth="700" d:DesignHeight="300" >
 
     <Grid>
