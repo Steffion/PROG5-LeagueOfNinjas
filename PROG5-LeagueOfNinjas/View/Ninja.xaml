@@ -1,0 +1,32 @@
+﻿<UserControl x:Class="PROG5_LeagueOfNinjas.View.AddNewNinja"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PROG5_LeagueOfNinjas.View"
+        mc:Ignorable="d"
+        DataContext="{Binding}" 
+        d:DesignWidth="300" d:DesignHeight="400">
+    <Grid>
+        <Grid HorizontalAlignment="Left" Height="400" VerticalAlignment="Top" Width="300">
+            <Image x:Name="Shen" Source="/Resources/Shen.png" Margin="40"/>
+            <Grid HorizontalAlignment="Left" Height="75" Margin="0,325,0,0" VerticalAlignment="Top" Width="300">
+                <Label x:Name="StrengthLabel" Content="Strength:" HorizontalAlignment="Left" Height="25" VerticalAlignment="Top" Width="100" Margin="0,50,0,0"/>
+                <Label x:Name="IntelligenceLabel" Content="Intelligence:" HorizontalAlignment="Left" Height="25" VerticalAlignment="Top" Width="100" Margin="0,25,0,0"/>
+                <Label x:Name="AgilityLabel" Content="Agility:" HorizontalAlignment="Left" Height="25" VerticalAlignment="Top" Width="100"/>
+                <Label x:Name="GearValue" Content="Gear value :" HorizontalAlignment="Left" Height="24" Margin="191,50,0,0" VerticalAlignment="Top" Width="109"/>
+            </Grid>
+            <Grid HorizontalAlignment="Left" Height="325" VerticalAlignment="Top" Width="80">
+                <Label x:Name="ChestLabel" Content="Chest" HorizontalAlignment="Left" Height="77" VerticalAlignment="Top" Width="80" Margin="0,137,0,0"/>
+                <Label x:Name="PantsLabel" Content="Pants" HorizontalAlignment="Left" Height="77" VerticalAlignment="Top" Width="80" Margin="0,238,0,0"/>
+                <Label x:Name="ShoulderLabel" Content="Shoulders" HorizontalAlignment="Left" Height="77" VerticalAlignment="Top" Width="80" Margin="0,30,0,0"/>
+            </Grid>
+            <Grid HorizontalAlignment="Left" Height="325" VerticalAlignment="Top" Width="80" Margin="220,0,0,0">
+                <Label x:Name="HeadLabel" Content="Head" HorizontalAlignment="Left" Height="77" VerticalAlignment="Top" Width="80" Margin="0,22,0,0"/>
+                <Label x:Name="BeltLabel" Content="Belt" HorizontalAlignment="Left" Height="77" VerticalAlignment="Top" Width="80" Margin="0,118,0,0"/>
+                <Label x:Name="BootsLabel" Content="Boots" HorizontalAlignment="Left" Height="77" VerticalAlignment="Top" Width="80" Margin="0,214,0,0"/>
+            </Grid>
+        </Grid>
+
+    </Grid>
+</UserControl>

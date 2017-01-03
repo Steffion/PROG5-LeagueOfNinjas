@@ -1,0 +1,23 @@
+﻿<UserControl x:Class="PROG5_LeagueOfNinjas.View.EditNinja"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PROG5_LeagueOfNinjas.View"
+        mc:Ignorable="d"
+        DataContext="{Binding}" 
+        d:DesignWidth="300" d:DesignHeight="200">
+    <Grid>
+        <Grid HorizontalAlignment="Left" Height="200" VerticalAlignment="Top" Width="300">
+            <Label x:Name="NameLabel" Content="Your new name" HorizontalAlignment="Left" Height="30" Margin="10,10,0,0" VerticalAlignment="Top" Width="145"/>
+            <Label x:Name="GoldLabel" Content="Your new amount of gold" HorizontalAlignment="Left" Height="30" Margin="10,45,0,0" VerticalAlignment="Top" Width="145"/>
+            <TextBox x:Name="NameInput" HorizontalAlignment="Left" Height="30" Margin="160,10,0,0" TextWrapping="Wrap" Text="..." VerticalAlignment="Top" Width="110"/>
+            <TextBox x:Name="GoldInput" HorizontalAlignment="Left" Height="30" Margin="160,45,0,0" TextWrapping="Wrap" Text="..." VerticalAlignment="Top" Width="110"/>
+            <Button x:Name="Cancel" Content="Save" HorizontalAlignment="Left" Height="30" Margin="160,125,0,0" VerticalAlignment="Top" Width="110"/>
+            <Button x:Name="Save" Content="Cancel" HorizontalAlignment="Left" Height="30" Margin="160,160,0,0" VerticalAlignment="Top" Width="110"/>
+            
+        </Grid>
+
+
+    </Grid>
+</UserControl>

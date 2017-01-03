@@ -90,6 +90,18 @@
     </ApplicationDefinition>
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
+    <Compile Include="View\AddNewNinja.xaml.cs">
+      <DependentUpon>AddNewNinja.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Ninja.xaml.cs">
+      <DependentUpon>Ninja.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\EditNinja.xaml.cs">
+      <DependentUpon>EditNinja.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\NinjaCrud.xaml.cs">
+      <DependentUpon>NinjaCrud.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -102,6 +114,26 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Resources\Dictionairy\ResourceDictionairy.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AddNewNinja.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Ninja.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\EditNinja.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\NinjaCrud.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -132,7 +164,16 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="View\" />
+    <Resource Include="Resources\Shen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Akali1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Akali2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Akali3.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
