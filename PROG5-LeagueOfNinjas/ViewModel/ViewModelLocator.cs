@@ -17,6 +17,7 @@ using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
 using PROG5_LeagueOfNinjas.Data;
 using PROG5_LeagueOfNinjas.ViewModel.Ninjas;
+using PROG5_LeagueOfNinjas.ViewModel.Equipment;
 
 namespace PROG5_LeagueOfNinjas.ViewModel
 {
@@ -36,6 +37,7 @@ namespace PROG5_LeagueOfNinjas.ViewModel
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<LeagueOfNinjasDatabaseEntities>();
             SimpleIoc.Default.Register<NinjaListViewModel>();
+            SimpleIoc.Default.Register<EquipmentListViewModel>();
         }
 
         public MainViewModel Main
@@ -53,6 +55,24 @@ namespace PROG5_LeagueOfNinjas.ViewModel
                 return ServiceLocator.Current.GetInstance<LeagueOfNinjasDatabaseEntities>();
             }
         }
+
+        #region Equipment CRUD
+        public EquipmentListViewModel EquipmentListViewModel
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<EquipmentListViewModel>();
+            }
+        }
+
+        public EquipmentEditViewModel EquipmentEditViewModel
+        {
+            get
+            {
+                return new EquipmentEditViewModel(EquipmentListViewModel, Database);
+            }
+        }
+        #endregion
 
         #region Ninja CRUD
         public NinjaListViewModel NinjaListViewModel

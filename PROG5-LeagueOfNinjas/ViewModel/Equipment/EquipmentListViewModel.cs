@@ -12,19 +12,19 @@ using PROG5_LeagueOfNinjas.View.Equipment;
 
 namespace PROG5_LeagueOfNinjas.ViewModel.Equipment
 {
-    class EquipmentListViewModel : ViewModelBase
+    public class EquipmentListViewModel : ViewModelBase
     {
         private LeagueOfNinjasDatabaseEntities _database;
         private Ninja _selectedNinja;
         private EquipmentEditView _editView;
 
-        public ICommand EquipementEditCommand { get; set; }
+        public ICommand EquipmentEditCommand { get; set; }
 
         public EquipmentListViewModel(LeagueOfNinjasDatabaseEntities database)
         {
             _database = database;
 
-            EquipementEditCommand = new RelayCommand(editEquipment);
+            EquipmentEditCommand = new RelayCommand(editEquipment);
         }
 
         public ObservableCollection<Ninja> Ninjas
@@ -62,6 +62,12 @@ namespace PROG5_LeagueOfNinjas.ViewModel.Equipment
         {
             _editView = new EquipmentEditView();
             _editView.ShowDialog();
+        }
+
+        public void closeEditEquipment()
+        {
+            _editView.Close();
+            //_editView.ShowDialog();
         }
     }
 }

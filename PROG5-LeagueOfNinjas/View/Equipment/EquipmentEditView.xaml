@@ -5,8 +5,36 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PROG5_LeagueOfNinjas.View.Equipment"
         mc:Ignorable="d"
-        Title="EquipmentEditView" Height="300" Width="300">
+        Title="EquipmentEditView" Height="450" Width="500"
+        DataContext="{Binding Source={StaticResource Locator}, Path=EquipmentEditViewModel}">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="325" />
+            <ColumnDefinition Width="175" />
+        </Grid.ColumnDefinitions>
+        <ListBox Grid.Column="0" ItemsSource="{Binding Equipment}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock>
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{}{0}. Price: {1}">
+                                <Binding Path="Name" />
+                                <Binding Path="Value" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <Label Grid.Column="1" DataContext="{Binding Ninja}" >
+            <Label.Content>
+                <MultiBinding StringFormat="{}{0}. Price: {1}">
+                    <Binding Path="Name" />
+                    <Binding Path="Gold" />
+                </MultiBinding>
+            </Label.Content>
+        </Label>
+        <Button Grid.Column="1" Width="50" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="15,0,0,10" Command="{Binding SaveCommand}">Save</Button>
+        <Button Grid.Column="1" Width="50" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,15,10" Command="{Binding CancelCommand}">Cancel</Button>
     </Grid>
 </Window>
