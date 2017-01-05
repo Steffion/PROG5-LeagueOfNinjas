@@ -15,6 +15,7 @@
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
+using PROG5_LeagueOfNinjas.Data;
 
 namespace PROG5_LeagueOfNinjas.ViewModel
 {
@@ -31,18 +32,8 @@ namespace PROG5_LeagueOfNinjas.ViewModel
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
-            ////if (ViewModelBase.IsInDesignModeStatic)
-            ////{
-            ////    // Create design time view services and models
-            ////    SimpleIoc.Default.Register<IDataService, DesignDataService>();
-            ////}
-            ////else
-            ////{
-            ////    // Create run time view services and models
-            ////    SimpleIoc.Default.Register<IDataService, DataService>();
-            ////}
-
             SimpleIoc.Default.Register<MainViewModel>();
+            SimpleIoc.Default.Register<LeagueOfNinjasDatabaseEntities>();
         }
 
         public MainViewModel Main
@@ -52,7 +43,15 @@ namespace PROG5_LeagueOfNinjas.ViewModel
                 return ServiceLocator.Current.GetInstance<MainViewModel>();
             }
         }
-        
+
+        public LeagueOfNinjasDatabaseEntities Database
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<LeagueOfNinjasDatabaseEntities>();
+            }
+        }
+
         public static void Cleanup()
         {
             // TODO Clear the ViewModels
