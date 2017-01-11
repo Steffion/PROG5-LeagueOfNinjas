@@ -63,7 +63,7 @@
     <Build Include="Category.sql" />
     <Build Include="Equipment.sql" />
     <Build Include="Loadout.sql" />
-    <Build Include="Loadout_has_Equipment.sql" />
+    <Build Include="LoadoutItems.sql" />
     <Build Include="PurchasedItems.sql" />
   </ItemGroup>
   <ItemGroup>
