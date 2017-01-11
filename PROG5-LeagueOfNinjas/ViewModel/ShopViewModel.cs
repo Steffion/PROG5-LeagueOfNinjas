@@ -85,7 +85,7 @@ namespace PROG5_LeagueOfNinjas.ViewModel
 
                 foreach (var purchasedItem in MainViewModel.CurrentNinja.PurchasedItems)
                 {
-                    if (equipment.Id == purchasedItem.Id)
+                    if (equipment.Id == purchasedItem.Equipment)
                     {
                         bought = true;
                         break;
@@ -111,10 +111,7 @@ namespace PROG5_LeagueOfNinjas.ViewModel
 
             _database.SaveChanges();
 
-            Equipment.Remove(SelectedEquipment);
-            SelectedEquipment = null;
-
-            RaisePropertyChanged("Equipment");
+            UpdateEquipment();
         }
     }
 }

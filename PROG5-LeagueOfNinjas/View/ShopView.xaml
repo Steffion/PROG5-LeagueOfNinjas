@@ -71,7 +71,7 @@
                     </TextBlock>
                 </Grid>
 
-                <Button Grid.Row="2" Content="Buy" Background="#FFA4AAE4" BorderBrush="Black" />
+                <Button Grid.Row="2" Content="Buy" Command="{Binding BuyCommand}"  Background="#FFA4AAE4" BorderBrush="Black" />
             </Grid>
         </Grid>
     </Grid>
