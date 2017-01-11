@@ -10,10 +10,10 @@ namespace PROG5_LeagueOfNinjas.Model
 {
     public class ImageHandler
     {
-        public static byte[] ConvertToByteArray(System.Drawing.Image imageIn)
+        public static byte[] ConvertToByteArray(Stream stream)
         {
             MemoryStream ms = new MemoryStream();
-            imageIn.Save(ms, System.Drawing.Imaging.ImageFormat.Gif);
+            stream.CopyTo(ms);
             return ms.ToArray();
         }
 
