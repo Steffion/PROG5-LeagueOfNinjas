@@ -33,9 +33,18 @@ namespace PROG5_LeagueOfNinjas.ViewModel
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
+            SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<ShopViewModel>();
             SimpleIoc.Default.Register<LeagueOfNinjasDatabaseEntities>();
             SimpleIoc.Default.Register<NinjaListViewModel>();
+        }
+
+        public MainViewModel MainViewModel
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<MainViewModel>();
+            }
         }
 
         public ShopViewModel ShopViewModel

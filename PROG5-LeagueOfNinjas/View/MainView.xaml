@@ -1,0 +1,44 @@
+﻿<Window x:Class="PROG5_LeagueOfNinjas.View.MainView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PROG5_LeagueOfNinjas.View"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        DataContext="{Binding Source={StaticResource Locator}, Path=MainViewModel}"
+        Title="League Of Ninjas" Height="600" Width="900">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.3*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Border Grid.Column="0" BorderBrush="Black" BorderThickness="1">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.7*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0" VerticalAlignment="Stretch">
+                    <Button Content="Ninja's" Command="{Binding OpenNinjasCommand}" />
+                    <Button Content="Shop" Command="{Binding OpenShopCommand}" />
+                    <Button Content="Loadout" Command="{Binding OpenLoadoutCommand}" />
+                    <Button Content="Equipment (admin)" Command="{Binding OpenEquipmentCommand}" />
+                </StackPanel>
+                <StackPanel Grid.Row="1">
+                    <Label Content="Select your current ninja:" />
+                    <ListBox ItemsSource="{Binding Ninjas}" SelectedItem="{Binding SelectedNinja}" VerticalContentAlignment="Stretch">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Name}" />
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <UserControl Grid.Column="1" Content="{Binding CurrentView}" />
+    </Grid>
+</Window>

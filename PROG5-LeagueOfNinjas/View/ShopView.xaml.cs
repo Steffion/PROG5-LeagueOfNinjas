@@ -15,12 +15,9 @@ using System.Windows.Shapes;
 
 namespace PROG5_LeagueOfNinjas
 {
-    /// <summary>
-    /// Interaction logic for ShopWindow.xaml
-    /// </summary>
-    public partial class ShopWindow : Window
+    public partial class ShopView : UserControl
     {
-        public ShopWindow()
+        public ShopView()
         {
             InitializeComponent();
         }
