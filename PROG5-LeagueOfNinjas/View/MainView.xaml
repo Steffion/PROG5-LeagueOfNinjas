@@ -8,7 +8,7 @@
         WindowStartupLocation="CenterScreen"
         DataContext="{Binding Source={StaticResource Locator}, Path=MainViewModel}"
         Title="League Of Ninjas" Height="600" Width="900">
-    <Grid Background="#FF444444">
+    <Grid Background="black">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.3*" />
             <ColumnDefinition Width="*" />
@@ -21,13 +21,13 @@
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
                 <StackPanel Grid.Row="0" VerticalAlignment="Stretch">
-                    <Button Content="Ninja's" Command="{Binding OpenNinjasCommand}" Background="#FFA4AAE4" />
-                    <Button Content="Shop" Command="{Binding OpenShopCommand}" Background="#FFA4AAE4" />
-                    <Button Content="Loadout" Command="{Binding OpenLoadoutCommand}" Background="#FFA4AAE4" />
-                    <Button Content="Equipment (admin)" Command="{Binding OpenEquipmentCommand}" Background="#FFA4AAE4" />
+                    <Button Content="Ninja's" Command="{Binding OpenNinjasCommand}" />
+                    <Button Content="Shop" Command="{Binding OpenShopCommand}" />
+                    <Button Content="Loadout" Command="{Binding OpenLoadoutCommand}" />
+                    <Button Content="Equipment (admin)" Command="{Binding OpenEquipmentCommand}"  />
                 </StackPanel>
                 <StackPanel Grid.Row="1">
-                    <Label Content="Select your current ninja:" Background="#FFA4AAE4" />
+                    <Label Content="Select your current ninja:" />
                     <ListBox ItemsSource="{Binding Ninjas}" SelectedItem="{Binding SelectedNinja}" VerticalContentAlignment="Stretch">
                         <ListBox.ItemTemplate>
                             <DataTemplate>

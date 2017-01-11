@@ -10,7 +10,7 @@
         ResizeMode="NoResize"
         Title="Wijzig ninja" Height="150" Width="300"
         DataContext="{Binding Source={StaticResource Locator}, Path=NinjaEditViewModel}">
-    <Grid>
+    <Grid Background="black">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.2*" />
             <ColumnDefinition Width="0.8*" />
