@@ -18,12 +18,12 @@ namespace PROG5_LeagueOfNinjas.ViewModel
 {
     public class MainViewModel : ViewModelBase
     {
-        private LeagueOfNinjasDatabaseEntities _database;
+        private LeagueOfNinjasEntities _database;
         private Ninja _selectedNinja;
         private UserControl _currentView;
         private ViewFactory _viewFactory;
 
-        public MainViewModel(LeagueOfNinjasDatabaseEntities database)
+        public MainViewModel(LeagueOfNinjasEntities database)
         {
             _database = database;
             _viewFactory = new ViewFactory();

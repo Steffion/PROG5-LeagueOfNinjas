@@ -13,10 +13,10 @@ namespace PROG5_LeagueOfNinjas.Data
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class LeagueOfNinjasDatabaseEntities : DbContext
+    public partial class LeagueOfNinjasEntities : DbContext
     {
-        public LeagueOfNinjasDatabaseEntities()
-            : base("name=LeagueOfNinjasDatabaseEntities")
+        public LeagueOfNinjasEntities()
+            : base("name=LeagueOfNinjasEntities")
         {
         }
     

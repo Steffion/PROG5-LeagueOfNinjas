@@ -15,9 +15,9 @@ namespace PROG5_LeagueOfNinjas.ViewModel.Equipment
     {
         private Data.Equipment _equipmentItem;
         private EquipmentListViewModel _listViewModel;
-        private LeagueOfNinjasDatabaseEntities _database;
+        private LeagueOfNinjasEntities _database;
 
-        private LeagueOfNinjasDatabaseEntities database;
+        private LeagueOfNinjasEntities database;
         private EquipmentListViewModel equipmentListViewModel;
 
         private string _equipmentName;
@@ -26,7 +26,7 @@ namespace PROG5_LeagueOfNinjas.ViewModel.Equipment
         public ICommand CancelCommand { get; set; }
         public ICommand SaveCommand { get; set; }
 
-        public EquipmentEditViewModel(EquipmentListViewModel equipmentListViewModel, LeagueOfNinjasDatabaseEntities database)
+        public EquipmentEditViewModel(EquipmentListViewModel equipmentListViewModel, LeagueOfNinjasEntities database)
         {
             _listViewModel = equipmentListViewModel;
             _equipmentItem = _listViewModel.SelectedEquipment;

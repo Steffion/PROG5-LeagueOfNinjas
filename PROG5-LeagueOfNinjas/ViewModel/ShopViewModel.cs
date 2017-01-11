@@ -8,11 +8,11 @@ namespace PROG5_LeagueOfNinjas.ViewModel
 {
     public class ShopViewModel : ViewModelBase
     {
-        private LeagueOfNinjasDatabaseEntities _database;
+        private LeagueOfNinjasEntities _database;
         private Category _selectedCategory;
         private Data.Equipment _selectedEquipment;
 
-        public ShopViewModel(LeagueOfNinjasDatabaseEntities database)
+        public ShopViewModel(LeagueOfNinjasEntities database)
         {
             _database = database;
 

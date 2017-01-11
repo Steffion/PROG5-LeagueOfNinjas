@@ -7,5 +7,6 @@
     [Intelligence] INT NULL, 
     [Agility] INT NULL, 
     [Name] VARCHAR(50) NOT NULL, 
+    [Image] VARBINARY(MAX) NULL, 
     CONSTRAINT [FK_Equipment_Category] FOREIGN KEY ([Type]) REFERENCES [Category]([Type]) ON DELETE CASCADE
 )

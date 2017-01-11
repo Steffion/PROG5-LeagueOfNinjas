@@ -8,6 +8,7 @@ using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using PROG5_LeagueOfNinjas.Data;
 using PROG5_LeagueOfNinjas.ViewModel.Ninjas;
+using System.Data.Entity;
 
 namespace PROG5_LeagueOfNinjas.ViewModel.Equipment
 {
@@ -17,12 +18,12 @@ namespace PROG5_LeagueOfNinjas.ViewModel.Equipment
         private string _equipmentName;
         private int _equipmentValue;
         private EquipmentListViewModel _listViewModel;
-        private LeagueOfNinjasDatabaseEntities _database;
+        private LeagueOfNinjasEntities _database;
 
         public ICommand CancelCommand { get; set; }
         public ICommand SaveCommand { get; set; }
 
-        public EquipmentCreateViewModel(EquipmentListViewModel listViewModel, LeagueOfNinjasDatabaseEntities database)
+        public EquipmentCreateViewModel(EquipmentListViewModel listViewModel, LeagueOfNinjasEntities database)
         {
             _equipment = new Data.Equipment();
             _equipmentName = "New Item";

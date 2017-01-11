@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="LeagueOfNinjasDatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Database.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="__RefactorLog">
           <Key>
             <PropertyRef Name="OperationKey" />
@@ -28,6 +28,7 @@
           <Property Name="Intelligence" Type="int" />
           <Property Name="Agility" Type="int" />
           <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Image" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="Loadout">
           <Key>
@@ -37,7 +38,7 @@
           <Property Name="Ninja" Type="int" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'LeagueOfNinjasDatabase.dbo.Loadout_has_Equipment' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'LeagueOfNinjas.dbo.Loadout_has_Equipment' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Loadout_has_Equipment">
           <Key>
             <PropertyRef Name="Loadout" />
@@ -55,7 +56,7 @@ warning 6002: The table/view 'LeagueOfNinjasDatabase.dbo.Loadout_has_Equipment' 
           <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'LeagueOfNinjasDatabase.dbo.PurchasedItems' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'LeagueOfNinjas.dbo.PurchasedItems' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="PurchasedItems">
           <Key>
             <PropertyRef Name="Ninja" />
@@ -65,7 +66,9 @@ warning 6002: The table/view 'LeagueOfNinjasDatabase.dbo.PurchasedItems' does no
           <Property Name="Equipment" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK_Equipment_Category">
-          <End Role="Category" Type="Self.Category" Multiplicity="1" />
+          <End Role="Category" Type="Self.Category" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Equipment" Type="Self.Equipment" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Category">
@@ -77,7 +80,9 @@ warning 6002: The table/view 'LeagueOfNinjasDatabase.dbo.PurchasedItems' does no
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Loadout_has_Equipment_Equipment">
-          <End Role="Equipment" Type="Self.Equipment" Multiplicity="1" />
+          <End Role="Equipment" Type="Self.Equipment" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Loadout_has_Equipment" Type="Self.Loadout_has_Equipment" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Equipment">
@@ -89,7 +94,9 @@ warning 6002: The table/view 'LeagueOfNinjasDatabase.dbo.PurchasedItems' does no
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Loadout_has_Equipment_Loadout">
-          <End Role="Loadout" Type="Self.Loadout" Multiplicity="1" />
+          <End Role="Loadout" Type="Self.Loadout" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Loadout_has_Equipment" Type="Self.Loadout_has_Equipment" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Loadout">
@@ -101,7 +108,9 @@ warning 6002: The table/view 'LeagueOfNinjasDatabase.dbo.PurchasedItems' does no
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Loadout_Ninja">
-          <End Role="Ninja" Type="Self.Ninja" Multiplicity="1" />
+          <End Role="Ninja" Type="Self.Ninja" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Loadout" Type="Self.Loadout" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Ninja">
@@ -113,7 +122,9 @@ warning 6002: The table/view 'LeagueOfNinjasDatabase.dbo.PurchasedItems' does no
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_PurchasedItems_Equipment">
-          <End Role="Equipment" Type="Self.Equipment" Multiplicity="1" />
+          <End Role="Equipment" Type="Self.Equipment" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="PurchasedItems" Type="Self.PurchasedItems" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Equipment">
@@ -125,7 +136,9 @@ warning 6002: The table/view 'LeagueOfNinjasDatabase.dbo.PurchasedItems' does no
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_PurchasedItems_Ninja">
-          <End Role="Ninja" Type="Self.Ninja" Multiplicity="1" />
+          <End Role="Ninja" Type="Self.Ninja" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="PurchasedItems" Type="Self.PurchasedItems" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Ninja">
@@ -136,7 +149,7 @@ warning 6002: The table/view 'LeagueOfNinjasDatabase.dbo.PurchasedItems' does no
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="LeagueOfNinjasDatabaseModelStoreContainer">
+        <EntityContainer Name="DatabaseStoreContainer">
           <EntitySet Name="__RefactorLog" EntityType="Self.__RefactorLog" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Equipment" EntityType="Self.Equipment" Schema="dbo" store:Type="Tables" />
@@ -183,7 +196,7 @@ warning 6002: The table/view 'LeagueOfNinjasDatabase.dbo.PurchasedItems' does no
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="LeagueOfNinjasDatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="Database" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="C__RefactorLog">
           <Key>
             <PropertyRef Name="OperationKey" />
@@ -208,6 +221,7 @@ warning 6002: The table/view 'LeagueOfNinjasDatabase.dbo.PurchasedItems' does no
           <Property Name="Intelligence" Type="Int32" />
           <Property Name="Agility" Type="Int32" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
           <NavigationProperty Name="Category" Relationship="Self.FK_Equipment_Category" FromRole="Equipment" ToRole="Category" />
           <NavigationProperty Name="Loadouts" Relationship="Self.Loadout_has_Equipment" FromRole="Equipment" ToRole="Loadout" />
           <NavigationProperty Name="Ninjas" Relationship="Self.PurchasedItems" FromRole="Equipment" ToRole="Ninja" />
@@ -232,7 +246,9 @@ warning 6002: The table/view 'LeagueOfNinjasDatabase.dbo.PurchasedItems' does no
           <NavigationProperty Name="Equipments" Relationship="Self.PurchasedItems" FromRole="Ninja" ToRole="Equipment" />
         </EntityType>
         <Association Name="FK_Equipment_Category">
-          <End Role="Category" Type="Self.Category" Multiplicity="1" />
+          <End Role="Category" Type="Self.Category" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Equipment" Type="Self.Equipment" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Category">
@@ -244,7 +260,9 @@ warning 6002: The table/view 'LeagueOfNinjasDatabase.dbo.PurchasedItems' does no
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Loadout_Ninja">
-          <End Role="Ninja" Type="Self.Ninja" Multiplicity="1" />
+          <End Role="Ninja" Type="Self.Ninja" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Loadout" Type="Self.Loadout" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Ninja">
@@ -263,7 +281,7 @@ warning 6002: The table/view 'LeagueOfNinjasDatabase.dbo.PurchasedItems' does no
           <End Role="Equipment" Type="Self.Equipment" Multiplicity="*" />
           <End Role="Ninja" Type="Self.Ninja" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="LeagueOfNinjasDatabaseEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="LeagueOfNinjasEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="C__RefactorLog" EntityType="Self.C__RefactorLog" />
           <EntitySet Name="Categories" EntityType="Self.Category" />
           <EntitySet Name="Equipments" EntityType="Self.Equipment" />
@@ -291,23 +309,23 @@ warning 6002: The table/view 'LeagueOfNinjasDatabase.dbo.PurchasedItems' does no
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="LeagueOfNinjasDatabaseModelStoreContainer" CdmEntityContainer="LeagueOfNinjasDatabaseEntities">
+        <EntityContainerMapping StorageEntityContainer="DatabaseStoreContainer" CdmEntityContainer="LeagueOfNinjasEntities">
           <EntitySetMapping Name="C__RefactorLog">
-            <EntityTypeMapping TypeName="LeagueOfNinjasDatabaseModel.C__RefactorLog">
+            <EntityTypeMapping TypeName="Database.C__RefactorLog">
               <MappingFragment StoreEntitySet="__RefactorLog">
                 <ScalarProperty Name="OperationKey" ColumnName="OperationKey" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Categories">
-            <EntityTypeMapping TypeName="LeagueOfNinjasDatabaseModel.Category">
+            <EntityTypeMapping TypeName="Database.Category">
               <MappingFragment StoreEntitySet="Category">
                 <ScalarProperty Name="Type" ColumnName="Type" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Equipments">
-            <EntityTypeMapping TypeName="LeagueOfNinjasDatabaseModel.Equipment">
+            <EntityTypeMapping TypeName="Database.Equipment">
               <MappingFragment StoreEntitySet="Equipment">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Type" ColumnName="Type" />
@@ -316,11 +334,12 @@ warning 6002: The table/view 'LeagueOfNinjasDatabase.dbo.PurchasedItems' does no
                 <ScalarProperty Name="Intelligence" ColumnName="Intelligence" />
                 <ScalarProperty Name="Agility" ColumnName="Agility" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Loadouts">
-            <EntityTypeMapping TypeName="LeagueOfNinjasDatabaseModel.Loadout">
+            <EntityTypeMapping TypeName="Database.Loadout">
               <MappingFragment StoreEntitySet="Loadout">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Ninja" ColumnName="Ninja" />
@@ -328,7 +347,7 @@ warning 6002: The table/view 'LeagueOfNinjasDatabase.dbo.PurchasedItems' does no
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Ninjas">
-            <EntityTypeMapping TypeName="LeagueOfNinjasDatabaseModel.Ninja">
+            <EntityTypeMapping TypeName="Database.Ninja">
               <MappingFragment StoreEntitySet="Ninja">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Gold" ColumnName="Gold" />
@@ -336,7 +355,7 @@ warning 6002: The table/view 'LeagueOfNinjasDatabase.dbo.PurchasedItems' does no
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="Loadout_has_Equipment" TypeName="LeagueOfNinjasDatabaseModel.Loadout_has_Equipment" StoreEntitySet="Loadout_has_Equipment">
+          <AssociationSetMapping Name="Loadout_has_Equipment" TypeName="Database.Loadout_has_Equipment" StoreEntitySet="Loadout_has_Equipment">
             <EndProperty Name="Equipment">
               <ScalarProperty Name="Id" ColumnName="Equipment" />
             </EndProperty>
@@ -344,7 +363,7 @@ warning 6002: The table/view 'LeagueOfNinjasDatabase.dbo.PurchasedItems' does no
               <ScalarProperty Name="Id" ColumnName="Loadout" />
             </EndProperty>
           </AssociationSetMapping>
-          <AssociationSetMapping Name="PurchasedItems" TypeName="LeagueOfNinjasDatabaseModel.PurchasedItems" StoreEntitySet="PurchasedItems">
+          <AssociationSetMapping Name="PurchasedItems" TypeName="Database.PurchasedItems" StoreEntitySet="PurchasedItems">
             <EndProperty Name="Equipment">
               <ScalarProperty Name="Id" ColumnName="Equipment" />
             </EndProperty>

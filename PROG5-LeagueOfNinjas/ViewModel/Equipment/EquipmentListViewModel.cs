@@ -14,7 +14,7 @@ namespace PROG5_LeagueOfNinjas.ViewModel.Equipment
 {
     public class EquipmentListViewModel : ViewModelBase
     {
-        private LeagueOfNinjasDatabaseEntities _database;
+        private LeagueOfNinjasEntities _database;
         private Data.Equipment _selectedEquipment;
         private EquipmentEditView _editView;
         private EquipmentCreateView _createView;
@@ -23,7 +23,7 @@ namespace PROG5_LeagueOfNinjas.ViewModel.Equipment
         public ICommand EquipmentCreateCommand { get; set; }
         public ICommand EquipmentDeleteCommand { get; set; }
 
-        public EquipmentListViewModel(LeagueOfNinjasDatabaseEntities database)
+        public EquipmentListViewModel(LeagueOfNinjasEntities database)
         {
             _database = database;
 

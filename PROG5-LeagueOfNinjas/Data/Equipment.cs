@@ -28,6 +28,7 @@ namespace PROG5_LeagueOfNinjas.Data
         public Nullable<int> Intelligence { get; set; }
         public Nullable<int> Agility { get; set; }
         public string Name { get; set; }
+        public byte[] Image { get; set; }
     
         public virtual Category Category { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
