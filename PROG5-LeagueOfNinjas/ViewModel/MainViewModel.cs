@@ -1,6 +1,7 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using PROG5_LeagueOfNinjas.Data;
+using PROG5_LeagueOfNinjas.Model;
 using PROG5_LeagueOfNinjas.View.Equipment;
 using PROG5_LeagueOfNinjas.View.Ninjas;
 using System;
@@ -20,11 +21,13 @@ namespace PROG5_LeagueOfNinjas.ViewModel
         private LeagueOfNinjasDatabaseEntities _database;
         private Ninja _selectedNinja;
         private UserControl _currentView;
+        private ViewFactory _viewFactory;
 
         public MainViewModel(LeagueOfNinjasDatabaseEntities database)
         {
             _database = database;
-            CurrentView = new NinjaListView();
+            _viewFactory = new ViewFactory();
+            OpenNinjas();
 
             OpenNinjasCommand = new RelayCommand(OpenNinjas);
             OpenShopCommand = new RelayCommand(OpenShop);
@@ -74,22 +77,22 @@ namespace PROG5_LeagueOfNinjas.ViewModel
 
         public void OpenNinjas()
         {
-            CurrentView = new NinjaListView();
+            CurrentView = _viewFactory.GetView("ninja");
         }
 
         public void OpenShop()
         {
-            CurrentView = new ShopView();
+            CurrentView = _viewFactory.GetView("shop");
         }
 
         public void OpenLoadout()
         {
-            CurrentView = new NinjaListView();
+            CurrentView = _viewFactory.GetView("loadout");
         }
 
         public void OpenEquipment()
         {
-            CurrentView = new EquipmentListView();
+            CurrentView = _viewFactory.GetView("equipment");
         }
     }
 }
