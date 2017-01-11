@@ -28,6 +28,7 @@ namespace PROG5_LeagueOfNinjas.ViewModel
         public ObservableCollection<Data.Equipment> Equipment { get; set; }
 
         public ICommand BuyCommand { get; set; }
+        public ICommand RefreshCommand { get; set; }
 
         public Category SelectedCategory
         {

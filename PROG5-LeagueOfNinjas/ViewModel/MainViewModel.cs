@@ -31,23 +31,22 @@ namespace PROG5_LeagueOfNinjas.ViewModel
             _viewFactory = new ViewFactory();
             OpenNinjas();
 
+            Ninjas = new ObservableCollection<Ninja>(_database.Ninjas);
+
             OpenNinjasCommand = new RelayCommand(OpenNinjas);
             OpenShopCommand = new RelayCommand(OpenShop);
             OpenLoadoutCommand = new RelayCommand(OpenLoadout);
             OpenEquipmentCommand = new RelayCommand(OpenEquipment);
+            RefreshCommand = new RelayCommand(Refresh);
         }
 
-        public ObservableCollection<Ninja> Ninjas
-        {
-            get
-            {
-                return new ObservableCollection<Ninja>(_database.Ninjas);
-            }
-        }
+        public ObservableCollection<Ninja> Ninjas { get; set; }
+        
         public ICommand OpenNinjasCommand { get; set; }
         public ICommand OpenShopCommand { get; set; }
         public ICommand OpenLoadoutCommand { get; set; }
         public ICommand OpenEquipmentCommand { get; set; }
+        public ICommand RefreshCommand { get; set; }
 
         public Ninja SelectedNinja
         {
@@ -96,6 +95,12 @@ namespace PROG5_LeagueOfNinjas.ViewModel
         public void OpenEquipment()
         {
             CurrentView = _viewFactory.GetView("equipment");
+        }
+
+        public void Refresh()
+        {
+            Ninjas = new ObservableCollection<Ninja>(_database.Ninjas);
+            RaisePropertyChanged("Ninjas");
         }
     }
 }
