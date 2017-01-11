@@ -11,6 +11,25 @@
                     </Trigger>
                 </Style.Triggers>
             </Style>
+            <Style TargetType="{x:Type Button}">
+                <Setter Property="Background" Value="#FFA4AAE4"/>
+                <Setter Property="BorderBrush" Value="#a0ffff"/>
+                <Setter Property="BorderThickness" Value="2"/>
+            </Style>
+            <Style TargetType="{x:Type Label}">
+                <Setter Property="Background" Value="#FFA4AAE4"/>
+                <Setter Property="BorderBrush" Value="#a0ffff" />
+                <Setter Property="BorderThickness" Value="2"/>
+            </Style>
+            <Style TargetType="{x:Type TextBox}">
+                <Setter Property="Background" Value="#FFA4AAE4"/>
+                <Setter Property="BorderBrush" Value="Black"/>
+                <Setter Property="BorderThickness" Value="2"/>
+            </Style>
+            <Style TargetType="{x:Type ListBoxItem}">
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="BorderBrush" Value="#a0ffff"/>
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
 </Application>
