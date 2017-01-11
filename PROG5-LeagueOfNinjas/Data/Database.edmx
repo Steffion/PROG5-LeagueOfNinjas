@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Database.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="LeagueOfNinjasModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="__RefactorLog">
           <Key>
             <PropertyRef Name="OperationKey" />
@@ -55,15 +55,31 @@ warning 6002: The table/view 'LeagueOfNinjas.dbo.Loadout_has_Equipment' does not
           <Property Name="Gold" Type="int" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'LeagueOfNinjas.dbo.PurchasedItems' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="PurchasedItems">
           <Key>
-            <PropertyRef Name="Ninja" />
-            <PropertyRef Name="Equipment" />
+            <PropertyRef Name="Id" />
           </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Ninja" Type="int" Nullable="false" />
           <Property Name="Equipment" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'LeagueOfNinjas.sys.database_firewall_rules' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="database_firewall_rules">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="name" />
+            <PropertyRef Name="start_ip_address" />
+            <PropertyRef Name="end_ip_address" />
+            <PropertyRef Name="create_date" />
+            <PropertyRef Name="modify_date" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="start_ip_address" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="end_ip_address" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="create_date" Type="datetime" Nullable="false" />
+          <Property Name="modify_date" Type="datetime" Nullable="false" />
         </EntityType>
         <Association Name="FK_Equipment_Category">
           <End Role="Category" Type="Self.Category" Multiplicity="1">
@@ -149,23 +165,28 @@ warning 6002: The table/view 'LeagueOfNinjas.dbo.PurchasedItems' does not have a
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="DatabaseStoreContainer">
+        <EntityContainer Name="LeagueOfNinjasModelStoreContainer">
           <EntitySet Name="__RefactorLog" EntityType="Self.__RefactorLog" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Equipment" EntityType="Self.Equipment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Loadout" EntityType="Self.Loadout" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Ninja" EntityType="Self.Ninja" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PurchasedItems" EntityType="Self.PurchasedItems" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Loadout_has_Equipment" EntityType="Self.Loadout_has_Equipment" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [Loadout_has_Equipment].[Loadout] AS [Loadout], 
     [Loadout_has_Equipment].[Equipment] AS [Equipment]
     FROM [dbo].[Loadout_has_Equipment] AS [Loadout_has_Equipment]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="PurchasedItems" EntityType="Self.PurchasedItems" store:Type="Tables" store:Schema="dbo">
+          <EntitySet Name="database_firewall_rules" EntityType="Self.database_firewall_rules" store:Type="Views" store:Schema="sys">
             <DefiningQuery>SELECT 
-    [PurchasedItems].[Ninja] AS [Ninja], 
-    [PurchasedItems].[Equipment] AS [Equipment]
-    FROM [dbo].[PurchasedItems] AS [PurchasedItems]</DefiningQuery>
+    [database_firewall_rules].[id] AS [id], 
+    [database_firewall_rules].[name] AS [name], 
+    [database_firewall_rules].[start_ip_address] AS [start_ip_address], 
+    [database_firewall_rules].[end_ip_address] AS [end_ip_address], 
+    [database_firewall_rules].[create_date] AS [create_date], 
+    [database_firewall_rules].[modify_date] AS [modify_date]
+    FROM [sys].[database_firewall_rules] AS [database_firewall_rules]</DefiningQuery>
           </EntitySet>
           <AssociationSet Name="FK_Equipment_Category" Association="Self.FK_Equipment_Category">
             <End Role="Category" EntitySet="Category" />
@@ -196,7 +217,7 @@ warning 6002: The table/view 'LeagueOfNinjas.dbo.PurchasedItems' does not have a
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="Database" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="LeagueOfNinjasModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="C__RefactorLog">
           <Key>
             <PropertyRef Name="OperationKey" />
@@ -223,8 +244,8 @@ warning 6002: The table/view 'LeagueOfNinjas.dbo.PurchasedItems' does not have a
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
           <NavigationProperty Name="Category" Relationship="Self.FK_Equipment_Category" FromRole="Equipment" ToRole="Category" />
+          <NavigationProperty Name="PurchasedItems" Relationship="Self.FK_PurchasedItems_Equipment" FromRole="Equipment" ToRole="PurchasedItems" />
           <NavigationProperty Name="Loadouts" Relationship="Self.Loadout_has_Equipment" FromRole="Equipment" ToRole="Loadout" />
-          <NavigationProperty Name="Ninjas" Relationship="Self.PurchasedItems" FromRole="Equipment" ToRole="Ninja" />
         </EntityType>
         <EntityType Name="Loadout">
           <Key>
@@ -243,7 +264,33 @@ warning 6002: The table/view 'LeagueOfNinjas.dbo.PurchasedItems' does not have a
           <Property Name="Gold" Type="Int32" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Loadouts" Relationship="Self.FK_Loadout_Ninja" FromRole="Ninja" ToRole="Loadout" />
-          <NavigationProperty Name="Equipments" Relationship="Self.PurchasedItems" FromRole="Ninja" ToRole="Equipment" />
+          <NavigationProperty Name="PurchasedItems" Relationship="Self.FK_PurchasedItems_Ninja" FromRole="Ninja" ToRole="PurchasedItems" />
+        </EntityType>
+        <EntityType Name="PurchasedItem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ninja" Type="Int32" Nullable="false" />
+          <Property Name="Equipment" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Equipment1" Relationship="Self.FK_PurchasedItems_Equipment" FromRole="PurchasedItems" ToRole="Equipment" />
+          <NavigationProperty Name="Ninja1" Relationship="Self.FK_PurchasedItems_Ninja" FromRole="PurchasedItems" ToRole="Ninja" />
+        </EntityType>
+        <EntityType Name="database_firewall_rules">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="name" />
+            <PropertyRef Name="start_ip_address" />
+            <PropertyRef Name="end_ip_address" />
+            <PropertyRef Name="create_date" />
+            <PropertyRef Name="modify_date" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="start_ip_address" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="end_ip_address" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="create_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="modify_date" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
         <Association Name="FK_Equipment_Category">
           <End Role="Category" Type="Self.Category" Multiplicity="1">
@@ -256,6 +303,20 @@ warning 6002: The table/view 'LeagueOfNinjas.dbo.PurchasedItems' does not have a
             </Principal>
             <Dependent Role="Equipment">
               <PropertyRef Name="Type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PurchasedItems_Equipment">
+          <End Role="Equipment" Type="Self.Equipment" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PurchasedItems" Type="Self.PurchasedItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Equipment">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PurchasedItems">
+              <PropertyRef Name="Equipment" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -273,35 +334,51 @@ warning 6002: The table/view 'LeagueOfNinjas.dbo.PurchasedItems' does not have a
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_PurchasedItems_Ninja">
+          <End Role="Ninja" Type="Self.Ninja" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PurchasedItems" Type="Self.PurchasedItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ninja">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PurchasedItems">
+              <PropertyRef Name="Ninja" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="Loadout_has_Equipment">
           <End Role="Equipment" Type="Self.Equipment" Multiplicity="*" />
           <End Role="Loadout" Type="Self.Loadout" Multiplicity="*" />
         </Association>
-        <Association Name="PurchasedItems">
-          <End Role="Equipment" Type="Self.Equipment" Multiplicity="*" />
-          <End Role="Ninja" Type="Self.Ninja" Multiplicity="*" />
-        </Association>
-        <EntityContainer Name="LeagueOfNinjasEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="C__RefactorLog" EntityType="Self.C__RefactorLog" />
           <EntitySet Name="Categories" EntityType="Self.Category" />
           <EntitySet Name="Equipments" EntityType="Self.Equipment" />
           <EntitySet Name="Loadouts" EntityType="Self.Loadout" />
           <EntitySet Name="Ninjas" EntityType="Self.Ninja" />
+          <EntitySet Name="PurchasedItems" EntityType="Self.PurchasedItem" />
+          <EntitySet Name="database_firewall_rules" EntityType="Self.database_firewall_rules" />
           <AssociationSet Name="FK_Equipment_Category" Association="Self.FK_Equipment_Category">
             <End Role="Category" EntitySet="Categories" />
             <End Role="Equipment" EntitySet="Equipments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PurchasedItems_Equipment" Association="Self.FK_PurchasedItems_Equipment">
+            <End Role="Equipment" EntitySet="Equipments" />
+            <End Role="PurchasedItems" EntitySet="PurchasedItems" />
           </AssociationSet>
           <AssociationSet Name="FK_Loadout_Ninja" Association="Self.FK_Loadout_Ninja">
             <End Role="Ninja" EntitySet="Ninjas" />
             <End Role="Loadout" EntitySet="Loadouts" />
           </AssociationSet>
+          <AssociationSet Name="FK_PurchasedItems_Ninja" Association="Self.FK_PurchasedItems_Ninja">
+            <End Role="Ninja" EntitySet="Ninjas" />
+            <End Role="PurchasedItems" EntitySet="PurchasedItems" />
+          </AssociationSet>
           <AssociationSet Name="Loadout_has_Equipment" Association="Self.Loadout_has_Equipment">
             <End Role="Equipment" EntitySet="Equipments" />
             <End Role="Loadout" EntitySet="Loadouts" />
-          </AssociationSet>
-          <AssociationSet Name="PurchasedItems" Association="Self.PurchasedItems">
-            <End Role="Equipment" EntitySet="Equipments" />
-            <End Role="Ninja" EntitySet="Ninjas" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -309,23 +386,23 @@ warning 6002: The table/view 'LeagueOfNinjas.dbo.PurchasedItems' does not have a
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="DatabaseStoreContainer" CdmEntityContainer="LeagueOfNinjasEntities">
+        <EntityContainerMapping StorageEntityContainer="LeagueOfNinjasModelStoreContainer" CdmEntityContainer="Entities">
           <EntitySetMapping Name="C__RefactorLog">
-            <EntityTypeMapping TypeName="Database.C__RefactorLog">
+            <EntityTypeMapping TypeName="LeagueOfNinjasModel.C__RefactorLog">
               <MappingFragment StoreEntitySet="__RefactorLog">
                 <ScalarProperty Name="OperationKey" ColumnName="OperationKey" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Categories">
-            <EntityTypeMapping TypeName="Database.Category">
+            <EntityTypeMapping TypeName="LeagueOfNinjasModel.Category">
               <MappingFragment StoreEntitySet="Category">
                 <ScalarProperty Name="Type" ColumnName="Type" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Equipments">
-            <EntityTypeMapping TypeName="Database.Equipment">
+            <EntityTypeMapping TypeName="LeagueOfNinjasModel.Equipment">
               <MappingFragment StoreEntitySet="Equipment">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Type" ColumnName="Type" />
@@ -339,7 +416,7 @@ warning 6002: The table/view 'LeagueOfNinjas.dbo.PurchasedItems' does not have a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Loadouts">
-            <EntityTypeMapping TypeName="Database.Loadout">
+            <EntityTypeMapping TypeName="LeagueOfNinjasModel.Loadout">
               <MappingFragment StoreEntitySet="Loadout">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Ninja" ColumnName="Ninja" />
@@ -347,7 +424,7 @@ warning 6002: The table/view 'LeagueOfNinjas.dbo.PurchasedItems' does not have a
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Ninjas">
-            <EntityTypeMapping TypeName="Database.Ninja">
+            <EntityTypeMapping TypeName="LeagueOfNinjasModel.Ninja">
               <MappingFragment StoreEntitySet="Ninja">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Gold" ColumnName="Gold" />
@@ -355,20 +432,33 @@ warning 6002: The table/view 'LeagueOfNinjas.dbo.PurchasedItems' does not have a
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="Loadout_has_Equipment" TypeName="Database.Loadout_has_Equipment" StoreEntitySet="Loadout_has_Equipment">
+          <EntitySetMapping Name="PurchasedItems">
+            <EntityTypeMapping TypeName="LeagueOfNinjasModel.PurchasedItem">
+              <MappingFragment StoreEntitySet="PurchasedItems">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Ninja" ColumnName="Ninja" />
+                <ScalarProperty Name="Equipment" ColumnName="Equipment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="database_firewall_rules">
+            <EntityTypeMapping TypeName="LeagueOfNinjasModel.database_firewall_rules">
+              <MappingFragment StoreEntitySet="database_firewall_rules">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="start_ip_address" ColumnName="start_ip_address" />
+                <ScalarProperty Name="end_ip_address" ColumnName="end_ip_address" />
+                <ScalarProperty Name="create_date" ColumnName="create_date" />
+                <ScalarProperty Name="modify_date" ColumnName="modify_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="Loadout_has_Equipment" TypeName="LeagueOfNinjasModel.Loadout_has_Equipment" StoreEntitySet="Loadout_has_Equipment">
             <EndProperty Name="Equipment">
               <ScalarProperty Name="Id" ColumnName="Equipment" />
             </EndProperty>
             <EndProperty Name="Loadout">
               <ScalarProperty Name="Id" ColumnName="Loadout" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="PurchasedItems" TypeName="Database.PurchasedItems" StoreEntitySet="PurchasedItems">
-            <EndProperty Name="Equipment">
-              <ScalarProperty Name="Id" ColumnName="Equipment" />
-            </EndProperty>
-            <EndProperty Name="Ninja">
-              <ScalarProperty Name="Id" ColumnName="Ninja" />
             </EndProperty>
           </AssociationSetMapping>
         </EntityContainerMapping>

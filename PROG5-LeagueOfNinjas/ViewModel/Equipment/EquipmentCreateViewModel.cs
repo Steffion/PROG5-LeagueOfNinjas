@@ -18,12 +18,12 @@ namespace PROG5_LeagueOfNinjas.ViewModel.Equipment
         private string _equipmentName;
         private int _equipmentValue;
         private EquipmentListViewModel _listViewModel;
-        private LeagueOfNinjasEntities _database;
+        private Entities _database;
 
         public ICommand CancelCommand { get; set; }
         public ICommand SaveCommand { get; set; }
 
-        public EquipmentCreateViewModel(EquipmentListViewModel listViewModel, LeagueOfNinjasEntities database)
+        public EquipmentCreateViewModel(EquipmentListViewModel listViewModel, Entities database)
         {
             _equipment = new Data.Equipment();
             _equipmentName = "New Item";

@@ -39,8 +39,13 @@ VALUES ('Head',		'3500',		null,		'100',			null,	'Rabadons Deathcap',	null),
 
 
 INSERT INTO PurchasedItems
---      ninja   equipment
-VALUES ('1', '4'), ('2', '5'), ('3', '6'), ('4', '8'), ('2', '1'), ('5', '4');
+--       ninja	    equipment
+VALUES	 ('1',		'4'),
+		 ('2',		'5'),
+		 ('3',		'6'),
+		 ('4',		'8'),
+		 ('2',		'1'),
+		 ('5',		'4');
 
 INSERT INTO Loadout
 --     ninja

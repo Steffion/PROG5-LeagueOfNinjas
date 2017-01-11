@@ -17,8 +17,8 @@ namespace PROG5_LeagueOfNinjas.Data
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Equipment()
         {
+            this.PurchasedItems = new HashSet<PurchasedItem>();
             this.Loadouts = new HashSet<Loadout>();
-            this.Ninjas = new HashSet<Ninja>();
         }
     
         public int Id { get; set; }
@@ -32,8 +32,8 @@ namespace PROG5_LeagueOfNinjas.Data
     
         public virtual Category Category { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Loadout> Loadouts { get; set; }
+        public virtual ICollection<PurchasedItem> PurchasedItems { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Ninja> Ninjas { get; set; }
+        public virtual ICollection<Loadout> Loadouts { get; set; }
     }
 }

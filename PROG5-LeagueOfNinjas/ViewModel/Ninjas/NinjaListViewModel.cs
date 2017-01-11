@@ -15,7 +15,7 @@ namespace PROG5_LeagueOfNinjas.ViewModel.Ninjas
 {
     public class NinjaListViewModel : ViewModelBase
     {
-        private LeagueOfNinjasEntities _database;
+        private Entities _database;
         private Ninja _selectedNinja;
         private NinjaCreateView _createView;
         private NinjaEditView _editView;
@@ -25,7 +25,7 @@ namespace PROG5_LeagueOfNinjas.ViewModel.Ninjas
         public ICommand NinjaDeleteCommand { get; set; }
         public ICommand NinjaSelectCommand { get; set; }
 
-        public NinjaListViewModel(LeagueOfNinjasEntities database)
+        public NinjaListViewModel(Entities database)
         {
             _database = database;
 

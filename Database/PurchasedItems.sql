@@ -1,5 +1,6 @@
 ﻿CREATE TABLE [dbo].[PurchasedItems]
 (
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY,
 	[Ninja] INT NOT NULL, 
     [Equipment] INT NOT NULL, 
     CONSTRAINT [FK_PurchasedItems_Ninja] FOREIGN KEY ([Ninja]) REFERENCES [Ninja]([Id]) ON DELETE CASCADE, 

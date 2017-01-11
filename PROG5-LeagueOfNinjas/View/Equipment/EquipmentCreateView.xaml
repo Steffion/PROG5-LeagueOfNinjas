@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:PROG5_LeagueOfNinjas.View.Equipment"
         xmlns:validation="clr-namespace:PROG5_LeagueOfNinjas.Validation"
         mc:Ignorable="d"
-        Title="EquipmentCreateView" Height="150" Width="300"
+        WindowStartupLocation="CenterScreen"
+        Title="Create equipment" Height="150" Width="300"
         DataContext="{Binding Source={StaticResource Locator}, Path=EquipmentCreateViewModel}">
     <Grid>
         <Grid.ColumnDefinitions>

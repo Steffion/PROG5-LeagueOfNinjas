@@ -18,12 +18,14 @@ namespace PROG5_LeagueOfNinjas.ViewModel
 {
     public class MainViewModel : ViewModelBase
     {
-        private LeagueOfNinjasEntities _database;
+        private Entities _database;
         private Ninja _selectedNinja;
         private UserControl _currentView;
         private ViewFactory _viewFactory;
 
-        public MainViewModel(LeagueOfNinjasEntities database)
+        public static Ninja CurrentNinja { get; set; }
+
+        public MainViewModel(Entities database)
         {
             _database = database;
             _viewFactory = new ViewFactory();
@@ -57,6 +59,7 @@ namespace PROG5_LeagueOfNinjas.ViewModel
             set
             {
                 _selectedNinja = value;
+                CurrentNinja = value;
                 RaisePropertyChanged("SelectedNinja");
             }
         }

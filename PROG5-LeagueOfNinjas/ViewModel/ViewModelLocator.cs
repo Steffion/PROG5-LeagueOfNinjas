@@ -36,7 +36,7 @@ namespace PROG5_LeagueOfNinjas.ViewModel
 
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<ShopViewModel>();
-            SimpleIoc.Default.Register<LeagueOfNinjasEntities>();
+            SimpleIoc.Default.Register<Entities>();
             SimpleIoc.Default.Register<NinjaListViewModel>();
             SimpleIoc.Default.Register<EquipmentListViewModel>();
         }
@@ -57,11 +57,11 @@ namespace PROG5_LeagueOfNinjas.ViewModel
             }
         }
 
-        public LeagueOfNinjasEntities Database
+        public Entities Database
         {
             get
             {
-                return ServiceLocator.Current.GetInstance<LeagueOfNinjasEntities>();
+                return ServiceLocator.Current.GetInstance<Entities>();
             }
         }
 

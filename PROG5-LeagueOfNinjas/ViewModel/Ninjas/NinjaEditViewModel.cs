@@ -17,12 +17,12 @@ namespace PROG5_LeagueOfNinjas.ViewModel.Ninjas
         private string _ninjaName;
         private int _ninjaGold;
         private NinjaListViewModel _listViewModel;
-        private LeagueOfNinjasEntities _database;
+        private Entities _database;
 
         public ICommand CancelCommand { get; set; }
         public ICommand SaveCommand { get; set; }
 
-        public NinjaEditViewModel(NinjaListViewModel listViewModel, LeagueOfNinjasEntities database)
+        public NinjaEditViewModel(NinjaListViewModel listViewModel, Entities database)
         {
             _ninja = listViewModel.SelectedNinja;
             _ninjaName = _ninja.Name;

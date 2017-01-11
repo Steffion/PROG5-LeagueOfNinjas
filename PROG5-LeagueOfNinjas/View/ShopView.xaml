@@ -46,6 +46,7 @@
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
 
                     <Label Grid.Column="0" Grid.Row="0" Content="Name" />
@@ -59,9 +60,18 @@
 
                     <Label Grid.Column="0" Grid.Row="3" Content="Intelligence" />
                     <Label Grid.Column="1" Grid.Row="3" Content="{Binding SelectedEquipment.Intelligence}" />
+
+                    <Label Grid.Column="0" Grid.Row="4" Content="Price:" FontWeight="Heavy" />
+                    <TextBlock Grid.Column="1" Grid.Row="4" FontWeight="Heavy">
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{}{0}G">
+                                <Binding Path="SelectedEquipment.Value" />
+                             </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
                 </Grid>
 
-                <Button Grid.Row="2" Content="Buy" />
+                <Button Grid.Row="2" Content="Buy" Command="{Binding BuyCommand}" />
             </Grid>
         </Grid>
     </Grid>
