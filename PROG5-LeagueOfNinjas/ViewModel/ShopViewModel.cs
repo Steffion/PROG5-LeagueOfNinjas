@@ -4,6 +4,7 @@ using PROG5_LeagueOfNinjas.Data;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows;
 using System.Windows.Input;
 
 namespace PROG5_LeagueOfNinjas.ViewModel
@@ -103,6 +104,12 @@ namespace PROG5_LeagueOfNinjas.ViewModel
 
         public void Buy()
         {
+            if (MainViewModel.CurrentNinja.Gold < SelectedEquipment.Value)
+            {
+                MessageBox.Show("You don't have that much money!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
             PurchasedItem item = new PurchasedItem();
             item.Ninja = MainViewModel.CurrentNinja.Id;
             item.Equipment = SelectedEquipment.Id;

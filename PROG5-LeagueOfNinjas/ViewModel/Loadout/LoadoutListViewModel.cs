@@ -42,6 +42,14 @@ namespace PROG5_LeagueOfNinjas.ViewModel.Loadout
             }
         }
 
+        public bool IsNinjaSelected
+        {
+            get
+            {
+                return MainViewModel.CurrentNinja != null;
+            }
+        }
+
         public bool IsLoadoutSelected
         {
             get {
@@ -60,6 +68,7 @@ namespace PROG5_LeagueOfNinjas.ViewModel.Loadout
             {
                 _selectedLoadout = value;
                 RaisePropertyChanged("SelectedLoadout");
+                RaisePropertyChanged("IsNinjaSelected");
                 RaisePropertyChanged("IsLoadoutSelected");
             }
         }

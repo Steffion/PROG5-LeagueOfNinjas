@@ -24,7 +24,7 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-            <Button Grid.Row="0" Margin="20,5" Command="{Binding LoadoutAddCommand}" IsEnabled="{Binding IsNinjaSelected}">Create new loadout</Button>
+            <Button Grid.Row="0" Margin="20,5" Command="{Binding LoadoutAddCommand}" IsEnabled="{Binding IsNinjaSelected}">Create Loadout</Button>
             <Button Grid.Row="1" Margin="20,5" Command="{Binding LoadoutEditCommand}" IsEnabled="{Binding IsLoadoutSelected}">Edit Loadout</Button>
             <Button Grid.Row="2" Margin="20,5" Command="{Binding LoadoutDeleteCommand}" IsEnabled="{Binding IsLoadoutSelected}">Delete Loadout</Button>
         </Grid>
