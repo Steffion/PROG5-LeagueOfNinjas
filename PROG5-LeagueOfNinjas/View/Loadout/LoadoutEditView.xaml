@@ -1,4 +1,4 @@
-﻿<Window x:Class="PROG5_LeagueOfNinjas.View.Ninjas.NinjaEditView"
+﻿<Window x:Class="PROG5_LeagueOfNinjas.View.Loadout.LoadoutEditView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -8,9 +8,9 @@
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize"
-        Title="Wijzig ninja" Height="150" Width="300"
-        DataContext="{Binding Source={StaticResource Locator}, Path=NinjaEditViewModel}">
-    <Grid Background="black">
+        Title="Edit loadout" Height="150" Width="300"
+        DataContext="{Binding Source={StaticResource Locator}, Path=LoadoutEditViewModel}">
+    <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.2*" />
             <ColumnDefinition Width="0.8*" />

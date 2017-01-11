@@ -13,9 +13,9 @@ namespace PROG5_LeagueOfNinjas.ViewModel.Ninjas
 {
     public class NinjaEditViewModel : ViewModelBase
     {
-        private Ninja _ninja;
-        private string _ninjaName;
-        private int _ninjaGold;
+        private Ninja _loadout;
+        private string _loadoutName;
+        private int _loadoutGold;
         private NinjaListViewModel _listViewModel;
         private Entities _database;
 
@@ -24,9 +24,9 @@ namespace PROG5_LeagueOfNinjas.ViewModel.Ninjas
 
         public NinjaEditViewModel(NinjaListViewModel listViewModel, Entities database)
         {
-            _ninja = listViewModel.SelectedNinja;
-            _ninjaName = _ninja.Name;
-            _ninjaGold = _ninja.Gold;
+            _loadout = listViewModel.SelectedNinja;
+            _loadoutName = _loadout.Name;
+            _loadoutGold = _loadout.Gold;
             _listViewModel = listViewModel;
             _database = database;
 
@@ -38,12 +38,12 @@ namespace PROG5_LeagueOfNinjas.ViewModel.Ninjas
         {
             get
             {
-                return _ninja;
+                return _loadout;
             }
 
             set
             {
-                _ninja = value;
+                _loadout = value;
                 RaisePropertyChanged("Ninja");
             }
         }
@@ -52,12 +52,12 @@ namespace PROG5_LeagueOfNinjas.ViewModel.Ninjas
         {
             get
             {
-                return _ninjaName;
+                return _loadoutName;
             }
 
             set
             {
-                _ninjaName = value;
+                _loadoutName = value;
                 RaisePropertyChanged("NinjaName");
             }
         }
@@ -66,12 +66,12 @@ namespace PROG5_LeagueOfNinjas.ViewModel.Ninjas
         {
             get
             {
-                return _ninjaGold;
+                return _loadoutGold;
             }
 
             set
             {
-                _ninjaGold = value;
+                _loadoutGold = value;
                 RaisePropertyChanged("NinjaGold");
             }
         }
@@ -83,8 +83,8 @@ namespace PROG5_LeagueOfNinjas.ViewModel.Ninjas
 
         public void Save()
         {
-            _ninja.Name = NinjaName;
-            _ninja.Gold = NinjaGold;
+            _loadout.Name = NinjaName;
+            _loadout.Gold = NinjaGold;
             _database.SaveChanges();
             _listViewModel.CloseEditWindow();
         }

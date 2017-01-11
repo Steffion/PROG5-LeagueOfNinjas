@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PROG5_LeagueOfNinjas.View.Equipment"
         mc:Ignorable="d"
         DataContext="{Binding Source={StaticResource Locator}, Path=EquipmentListViewModel}">
-    <Grid Background="#FF444444">
+    <Grid Background="black">
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
             <ColumnDefinition Width="246" />
@@ -19,9 +19,9 @@
             </ListBox.ItemTemplate>
         </ListBox>
         <Grid Grid.Column="1">
-            <Button Grid.Row="0" VerticalAlignment="Top" Height="20" Margin="10,10,10,0" Command="{Binding EquipmentCreateCommand}" Background="#FFA4AAE4" Foreground="Black"> Add Equipment</Button>
-            <Button Grid.Row="0" VerticalAlignment="Top" Height="20" Margin="10,40,10,20" Command="{Binding EquipmentEditCommand}" IsEnabled="{Binding IsEquipmentSelected}" Background="#FFA4AAE4" Click="Button_Click">Edit Equipment</Button>
-            <Button Grid.Row="0" VerticalAlignment="Top" Height="20" Margin="10,70,10,20" Command="{Binding EquipmentDeleteCommand}" IsEnabled="{Binding IsEquipmentSelected}" Background="#FFA4AAE4" BorderBrush="Black" Foreground="Black"> Delete Equipment </Button>
+            <Button Grid.Row="0" VerticalAlignment="Top" Height="20" Margin="10,10,10,0" Command="{Binding EquipmentCreateCommand}"> Add Equipment</Button>
+            <Button Grid.Row="0" VerticalAlignment="Top" Height="20" Margin="10,40,10,20" Command="{Binding EquipmentEditCommand}" IsEnabled="{Binding IsEquipmentSelected}">Edit Equipment</Button>
+            <Button Grid.Row="0" VerticalAlignment="Top" Height="20" Margin="10,70,10,20" Command="{Binding EquipmentDeleteCommand}" IsEnabled="{Binding IsEquipmentSelected}"> Delete Equipment </Button>
         </Grid>
     </Grid>
 </UserControl>

@@ -48,9 +48,14 @@ VALUES	 ('1',		'4'),
 		 ('5',		'4');
 
 INSERT INTO Loadout
---     ninja
-VALUES ('1'), ('2'), ('3'), ('4'), ('5'), ('2'); 
+--		name			ninja
+VALUES	('Loadout #1',	'1'),
+		('Loadout #2',	'2'),
+		('Loadout #3',	'3'),
+		('Loadout #4',	'4'),
+		('Loadout #5',	'5'),
+		('Loadout #6',	'2'); 
 
-INSERT INTO Loadout_has_Equipment
+INSERT INTO LoadoutItems
 --		Loadout   Equipment
 VALUES ('1', '4'), ('2', '5'), ('3', '6'), ('4', '8'), ('5', '4'), ('6', '1'), ('6', '5');
