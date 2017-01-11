@@ -26,16 +26,27 @@
                     <Button Content="Loadout" Command="{Binding OpenLoadoutCommand}" />
                     <Button Content="Equipment (admin)" Command="{Binding OpenEquipmentCommand}"  />
                 </StackPanel>
+
                 <StackPanel Grid.Row="1">
                     <Label Content="Select your current ninja:" />
                     <ListBox ItemsSource="{Binding Ninjas}" SelectedItem="{Binding SelectedNinja}" VerticalContentAlignment="Stretch">
+                <Grid Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Content="Select your current ninja:" Background="#FFA4AAE4" />
+                    <ListBox Grid.Row="1" ItemsSource="{Binding Ninjas}" SelectedItem="{Binding SelectedNinja}" VerticalContentAlignment="Stretch">
+
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Name}" />
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>
-                </StackPanel>
+                    <Button Grid.Row="2" Content="Refresh" Command="{Binding RefreshCommand}" />
+                </Grid>
             </Grid>
         </Border>
 
