@@ -2,6 +2,6 @@
 (
 	[Loadout] INT NOT NULL, 
     [Equipment] INT NOT NULL, 
-    CONSTRAINT [FK_Loadout_has_Equipment_Loadout] FOREIGN KEY ([Loadout]) REFERENCES [Loadout]([Id]), 
-    CONSTRAINT [FK_Loadout_has_Equipment_Equipment] FOREIGN KEY ([Equipment]) REFERENCES [Equipment]([Id]) 
+    CONSTRAINT [FK_Loadout_has_Equipment_Loadout] FOREIGN KEY ([Loadout]) REFERENCES [Loadout]([Id]) ON DELETE CASCADE, 
+    CONSTRAINT [FK_Loadout_has_Equipment_Equipment] FOREIGN KEY ([Equipment]) REFERENCES [Equipment]([Id])  ON DELETE CASCADE
 )
