@@ -17,7 +17,7 @@ namespace PROG5_LeagueOfNinjas.View.Equipment
     /// <summary>
     /// Interaction logic for EquipmentListView.xaml
     /// </summary>
-    public partial class EquipmentListView : Window
+    public partial class EquipmentListView : UserControl
     {
         public EquipmentListView()
         {
