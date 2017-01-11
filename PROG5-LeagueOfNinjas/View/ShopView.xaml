@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PROG5_LeagueOfNinjas"
         mc:Ignorable="d"
         DataContext="{Binding Source={StaticResource Locator}, Path=ShopViewModel}">
-    <Grid>
+    <Grid Background="#FF444444">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.3*" />
             <ColumnDefinition Width="0.3*" />
@@ -48,20 +48,20 @@
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
 
-                    <Label Grid.Column="0" Grid.Row="0" Content="Name" />
-                    <Label Grid.Column="1" Grid.Row="0" Content="{Binding SelectedEquipment.Name}" />
+                    <Label Grid.Column="0" Grid.Row="0" Content="Name" Background="#FFA4AAE4" BorderBrush="Black" />
+                    <Label Grid.Column="1" Grid.Row="0" Content="{Binding SelectedEquipment.Name}" Background="#FFA4AAE4" BorderBrush="Black" />
 
-                    <Label Grid.Column="0" Grid.Row="1" Content="Strength" />
-                    <Label Grid.Column="1" Grid.Row="1" Content="{Binding SelectedEquipment.Strength}" />
+                    <Label Grid.Column="0" Grid.Row="1" Content="Strength" Background="#FFA4AAE4" BorderBrush="Black" />
+                    <Label Grid.Column="1" Grid.Row="1" Content="{Binding SelectedEquipment.Strength}" Background="#FFA4AAE4" BorderBrush="Black" />
 
-                    <Label Grid.Column="0" Grid.Row="2" Content="Agility" />
-                    <Label Grid.Column="1" Grid.Row="2" Content="{Binding SelectedEquipment.Agility}" />
+                    <Label Grid.Column="0" Grid.Row="2" Content="Agility" Background="#FFA4AAE4" BorderBrush="Black" />
+                    <Label Grid.Column="1" Grid.Row="2" Content="{Binding SelectedEquipment.Agility}" Background="#FFA4AAE4" BorderBrush="Black" />
 
-                    <Label Grid.Column="0" Grid.Row="3" Content="Intelligence" />
-                    <Label Grid.Column="1" Grid.Row="3" Content="{Binding SelectedEquipment.Intelligence}" />
+                    <Label Grid.Column="0" Grid.Row="3" Content="Intelligence" Background="#FFA4AAE4" BorderBrush="Black" />
+                    <Label Grid.Column="1" Grid.Row="3" Content="{Binding SelectedEquipment.Intelligence}" Background="#FFA4AAE4" BorderBrush="Black" />
                 </Grid>
 
-                <Button Grid.Row="2" Content="Buy" />
+                <Button Grid.Row="2" Content="Buy" Background="#FFA4AAE4" BorderBrush="Black" />
             </Grid>
         </Grid>
     </Grid>
