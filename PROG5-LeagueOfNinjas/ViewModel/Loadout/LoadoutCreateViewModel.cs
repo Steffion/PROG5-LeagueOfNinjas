@@ -9,24 +9,22 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
-namespace PROG5_LeagueOfNinjas.ViewModel.Ninjas
+namespace PROG5_LeagueOfNinjas.ViewModel.Loadout
 {
-    public class NinjaCreateViewModel : ViewModelBase
+    public class LoadoutCreateViewModel : ViewModelBase
     {
-        private Ninja _loadout;
+        private Data.Loadout _loadout;
         private string _loadoutName;
-        private int _loadoutGold;
-        private NinjaListViewModel _listViewModel;
+        private LoadoutListViewModel _listViewModel;
         private Entities _database;
 
         public ICommand CancelCommand { get; set; }
         public ICommand SaveCommand { get; set; }
 
-        public NinjaCreateViewModel(NinjaListViewModel listViewModel, Entities database)
+        public LoadoutCreateViewModel(LoadoutListViewModel listViewModel, Entities database)
         {
-            _loadout = new Ninja();
-            _loadoutName = "New Ninja";
-            _loadoutGold = 500;
+            _loadout = new Data.Loadout();
+            _loadoutName = "New Loadout";
             _listViewModel = listViewModel;
             _database = database;
 
@@ -34,7 +32,7 @@ namespace PROG5_LeagueOfNinjas.ViewModel.Ninjas
             SaveCommand = new RelayCommand(Save);
         }
 
-        public Ninja Ninja
+        public Data.Loadout Loadout
         {
             get
             {
@@ -44,11 +42,11 @@ namespace PROG5_LeagueOfNinjas.ViewModel.Ninjas
             set
             {
                 _loadout = value;
-                RaisePropertyChanged("Ninja");
+                RaisePropertyChanged("Loadout");
             }
         }
 
-        public string NinjaName
+        public string LoadoutName
         {
             get
             {
@@ -58,21 +56,7 @@ namespace PROG5_LeagueOfNinjas.ViewModel.Ninjas
             set
             {
                 _loadoutName = value;
-                RaisePropertyChanged("NinjaName");
-            }
-        }
-
-        public int NinjaGold
-        {
-            get
-            {
-                return _loadoutGold;
-            }
-
-            set
-            {
-                _loadoutGold = value;
-                RaisePropertyChanged("NinjaGold");
+                RaisePropertyChanged("LoadoutName");
             }
         }
 
@@ -83,9 +67,8 @@ namespace PROG5_LeagueOfNinjas.ViewModel.Ninjas
 
         public void Save()
         {
-            _loadout.Name = NinjaName;
-            _loadout.Gold = NinjaGold;
-            _database.Ninjas.Add(_loadout);
+            _loadout.Name = LoadoutName;
+            _database.Loadouts.Add(_loadout);
             _database.SaveChanges();
             _listViewModel.CloseCreateWindow();
         }

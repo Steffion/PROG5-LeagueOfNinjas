@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="LeagueOfNinjasModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Database.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="__RefactorLog">
           <Key>
             <PropertyRef Name="OperationKey" />
@@ -27,7 +27,7 @@
           <Property Name="Strength" Type="int" />
           <Property Name="Intelligence" Type="int" />
           <Property Name="Agility" Type="int" />
-          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="varchar(max)" Nullable="false" />
           <Property Name="Image" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="Loadout">
@@ -35,15 +35,14 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar(max)" Nullable="false" />
           <Property Name="Ninja" Type="int" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'LeagueOfNinjas.dbo.Loadout_has_Equipment' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-        <EntityType Name="Loadout_has_Equipment">
+        <EntityType Name="LoadoutItems">
           <Key>
-            <PropertyRef Name="Loadout" />
-            <PropertyRef Name="Equipment" />
+            <PropertyRef Name="Id" />
           </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Loadout" Type="int" Nullable="false" />
           <Property Name="Equipment" Type="int" Nullable="false" />
         </EntityType>
@@ -53,7 +52,7 @@ warning 6002: The table/view 'LeagueOfNinjas.dbo.Loadout_has_Equipment' does not
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Gold" Type="int" Nullable="false" />
-          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="varchar(max)" Nullable="false" />
         </EntityType>
         <EntityType Name="PurchasedItems">
           <Key>
@@ -95,35 +94,7 @@ warning 6002: The table/view 'LeagueOfNinjas.sys.database_firewall_rules' does n
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Loadout_has_Equipment_Equipment">
-          <End Role="Equipment" Type="Self.Equipment" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Loadout_has_Equipment" Type="Self.Loadout_has_Equipment" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Equipment">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Loadout_has_Equipment">
-              <PropertyRef Name="Equipment" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Loadout_has_Equipment_Loadout">
-          <End Role="Loadout" Type="Self.Loadout" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Loadout_has_Equipment" Type="Self.Loadout_has_Equipment" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Loadout">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Loadout_has_Equipment">
-              <PropertyRef Name="Loadout" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Loadout_Ninja">
+        <Association Name="FK_Loadout_loadout">
           <End Role="Ninja" Type="Self.Ninja" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
@@ -134,6 +105,34 @@ warning 6002: The table/view 'LeagueOfNinjas.sys.database_firewall_rules' does n
             </Principal>
             <Dependent Role="Loadout">
               <PropertyRef Name="Ninja" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LoadoutItems_Equipment">
+          <End Role="Equipment" Type="Self.Equipment" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="LoadoutItems" Type="Self.LoadoutItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Equipment">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LoadoutItems">
+              <PropertyRef Name="Equipment" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LoadoutItems_Loadout">
+          <End Role="Loadout" Type="Self.Loadout" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="LoadoutItems" Type="Self.LoadoutItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Loadout">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LoadoutItems">
+              <PropertyRef Name="Loadout" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -151,7 +150,7 @@ warning 6002: The table/view 'LeagueOfNinjas.sys.database_firewall_rules' does n
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_PurchasedItems_Ninja">
+        <Association Name="FK_PurchasedItems_loadout">
           <End Role="Ninja" Type="Self.Ninja" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
@@ -165,19 +164,14 @@ warning 6002: The table/view 'LeagueOfNinjas.sys.database_firewall_rules' does n
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="LeagueOfNinjasModelStoreContainer">
+        <EntityContainer Name="DatabaseStoreContainer">
           <EntitySet Name="__RefactorLog" EntityType="Self.__RefactorLog" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Equipment" EntityType="Self.Equipment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Loadout" EntityType="Self.Loadout" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LoadoutItems" EntityType="Self.LoadoutItems" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Ninja" EntityType="Self.Ninja" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PurchasedItems" EntityType="Self.PurchasedItems" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Loadout_has_Equipment" EntityType="Self.Loadout_has_Equipment" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Loadout_has_Equipment].[Loadout] AS [Loadout], 
-    [Loadout_has_Equipment].[Equipment] AS [Equipment]
-    FROM [dbo].[Loadout_has_Equipment] AS [Loadout_has_Equipment]</DefiningQuery>
-          </EntitySet>
           <EntitySet Name="database_firewall_rules" EntityType="Self.database_firewall_rules" store:Type="Views" store:Schema="sys">
             <DefiningQuery>SELECT 
     [database_firewall_rules].[id] AS [id], 
@@ -192,23 +186,23 @@ warning 6002: The table/view 'LeagueOfNinjas.sys.database_firewall_rules' does n
             <End Role="Category" EntitySet="Category" />
             <End Role="Equipment" EntitySet="Equipment" />
           </AssociationSet>
-          <AssociationSet Name="FK_Loadout_has_Equipment_Equipment" Association="Self.FK_Loadout_has_Equipment_Equipment">
-            <End Role="Equipment" EntitySet="Equipment" />
-            <End Role="Loadout_has_Equipment" EntitySet="Loadout_has_Equipment" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Loadout_has_Equipment_Loadout" Association="Self.FK_Loadout_has_Equipment_Loadout">
-            <End Role="Loadout" EntitySet="Loadout" />
-            <End Role="Loadout_has_Equipment" EntitySet="Loadout_has_Equipment" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Loadout_Ninja" Association="Self.FK_Loadout_Ninja">
+          <AssociationSet Name="FK_Loadout_loadout" Association="Self.FK_Loadout_loadout">
             <End Role="Ninja" EntitySet="Ninja" />
             <End Role="Loadout" EntitySet="Loadout" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LoadoutItems_Equipment" Association="Self.FK_LoadoutItems_Equipment">
+            <End Role="Equipment" EntitySet="Equipment" />
+            <End Role="LoadoutItems" EntitySet="LoadoutItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LoadoutItems_Loadout" Association="Self.FK_LoadoutItems_Loadout">
+            <End Role="Loadout" EntitySet="Loadout" />
+            <End Role="LoadoutItems" EntitySet="LoadoutItems" />
           </AssociationSet>
           <AssociationSet Name="FK_PurchasedItems_Equipment" Association="Self.FK_PurchasedItems_Equipment">
             <End Role="Equipment" EntitySet="Equipment" />
             <End Role="PurchasedItems" EntitySet="PurchasedItems" />
           </AssociationSet>
-          <AssociationSet Name="FK_PurchasedItems_Ninja" Association="Self.FK_PurchasedItems_Ninja">
+          <AssociationSet Name="FK_PurchasedItems_loadout" Association="Self.FK_PurchasedItems_loadout">
             <End Role="Ninja" EntitySet="Ninja" />
             <End Role="PurchasedItems" EntitySet="PurchasedItems" />
           </AssociationSet>
@@ -217,7 +211,7 @@ warning 6002: The table/view 'LeagueOfNinjas.sys.database_firewall_rules' does n
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="LeagueOfNinjasModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="Database" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="C__RefactorLog">
           <Key>
             <PropertyRef Name="OperationKey" />
@@ -241,20 +235,31 @@ warning 6002: The table/view 'LeagueOfNinjas.sys.database_firewall_rules' does n
           <Property Name="Strength" Type="Int32" />
           <Property Name="Intelligence" Type="Int32" />
           <Property Name="Agility" Type="Int32" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
           <NavigationProperty Name="Category" Relationship="Self.FK_Equipment_Category" FromRole="Equipment" ToRole="Category" />
+          <NavigationProperty Name="LoadoutItems" Relationship="Self.FK_LoadoutItems_Equipment" FromRole="Equipment" ToRole="LoadoutItems" />
           <NavigationProperty Name="PurchasedItems" Relationship="Self.FK_PurchasedItems_Equipment" FromRole="Equipment" ToRole="PurchasedItems" />
-          <NavigationProperty Name="Loadouts" Relationship="Self.Loadout_has_Equipment" FromRole="Equipment" ToRole="Loadout" />
         </EntityType>
         <EntityType Name="Loadout">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Ninja" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Ninja1" Relationship="Self.FK_Loadout_Ninja" FromRole="Loadout" ToRole="Ninja" />
-          <NavigationProperty Name="Equipments" Relationship="Self.Loadout_has_Equipment" FromRole="Loadout" ToRole="Equipment" />
+          <NavigationProperty Name="Ninja1" Relationship="Self.FK_Loadout_loadout" FromRole="Loadout" ToRole="Ninja" />
+          <NavigationProperty Name="LoadoutItems" Relationship="Self.FK_LoadoutItems_Loadout" FromRole="Loadout" ToRole="LoadoutItems" />
+        </EntityType>
+        <EntityType Name="LoadoutItem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Loadout" Type="Int32" Nullable="false" />
+          <Property Name="Equipment" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Equipment1" Relationship="Self.FK_LoadoutItems_Equipment" FromRole="LoadoutItems" ToRole="Equipment" />
+          <NavigationProperty Name="Loadout1" Relationship="Self.FK_LoadoutItems_Loadout" FromRole="LoadoutItems" ToRole="Loadout" />
         </EntityType>
         <EntityType Name="Ninja">
           <Key>
@@ -262,9 +267,9 @@ warning 6002: The table/view 'LeagueOfNinjas.sys.database_firewall_rules' does n
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Gold" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Loadouts" Relationship="Self.FK_Loadout_Ninja" FromRole="Ninja" ToRole="Loadout" />
-          <NavigationProperty Name="PurchasedItems" Relationship="Self.FK_PurchasedItems_Ninja" FromRole="Ninja" ToRole="PurchasedItems" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Loadouts" Relationship="Self.FK_Loadout_loadout" FromRole="Ninja" ToRole="Loadout" />
+          <NavigationProperty Name="PurchasedItems" Relationship="Self.FK_PurchasedItems_loadout" FromRole="Ninja" ToRole="PurchasedItems" />
         </EntityType>
         <EntityType Name="PurchasedItem">
           <Key>
@@ -274,7 +279,7 @@ warning 6002: The table/view 'LeagueOfNinjas.sys.database_firewall_rules' does n
           <Property Name="Ninja" Type="Int32" Nullable="false" />
           <Property Name="Equipment" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Equipment1" Relationship="Self.FK_PurchasedItems_Equipment" FromRole="PurchasedItems" ToRole="Equipment" />
-          <NavigationProperty Name="Ninja1" Relationship="Self.FK_PurchasedItems_Ninja" FromRole="PurchasedItems" ToRole="Ninja" />
+          <NavigationProperty Name="Ninja1" Relationship="Self.FK_PurchasedItems_loadout" FromRole="PurchasedItems" ToRole="Ninja" />
         </EntityType>
         <EntityType Name="database_firewall_rules">
           <Key>
@@ -306,6 +311,20 @@ warning 6002: The table/view 'LeagueOfNinjas.sys.database_firewall_rules' does n
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_LoadoutItems_Equipment">
+          <End Role="Equipment" Type="Self.Equipment" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="LoadoutItems" Type="Self.LoadoutItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Equipment">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LoadoutItems">
+              <PropertyRef Name="Equipment" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_PurchasedItems_Equipment">
           <End Role="Equipment" Type="Self.Equipment" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -320,7 +339,7 @@ warning 6002: The table/view 'LeagueOfNinjas.sys.database_firewall_rules' does n
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Loadout_Ninja">
+        <Association Name="FK_Loadout_loadout">
           <End Role="Ninja" Type="Self.Ninja" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
@@ -334,7 +353,21 @@ warning 6002: The table/view 'LeagueOfNinjas.sys.database_firewall_rules' does n
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_PurchasedItems_Ninja">
+        <Association Name="FK_LoadoutItems_Loadout">
+          <End Role="Loadout" Type="Self.Loadout" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="LoadoutItems" Type="Self.LoadoutItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Loadout">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LoadoutItems">
+              <PropertyRef Name="Loadout" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PurchasedItems_loadout">
           <End Role="Ninja" Type="Self.Ninja" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
@@ -348,15 +381,12 @@ warning 6002: The table/view 'LeagueOfNinjas.sys.database_firewall_rules' does n
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="Loadout_has_Equipment">
-          <End Role="Equipment" Type="Self.Equipment" Multiplicity="*" />
-          <End Role="Loadout" Type="Self.Loadout" Multiplicity="*" />
-        </Association>
         <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="C__RefactorLog" EntityType="Self.C__RefactorLog" />
           <EntitySet Name="Categories" EntityType="Self.Category" />
           <EntitySet Name="Equipments" EntityType="Self.Equipment" />
           <EntitySet Name="Loadouts" EntityType="Self.Loadout" />
+          <EntitySet Name="LoadoutItems" EntityType="Self.LoadoutItem" />
           <EntitySet Name="Ninjas" EntityType="Self.Ninja" />
           <EntitySet Name="PurchasedItems" EntityType="Self.PurchasedItem" />
           <EntitySet Name="database_firewall_rules" EntityType="Self.database_firewall_rules" />
@@ -364,21 +394,25 @@ warning 6002: The table/view 'LeagueOfNinjas.sys.database_firewall_rules' does n
             <End Role="Category" EntitySet="Categories" />
             <End Role="Equipment" EntitySet="Equipments" />
           </AssociationSet>
+          <AssociationSet Name="FK_LoadoutItems_Equipment" Association="Self.FK_LoadoutItems_Equipment">
+            <End Role="Equipment" EntitySet="Equipments" />
+            <End Role="LoadoutItems" EntitySet="LoadoutItems" />
+          </AssociationSet>
           <AssociationSet Name="FK_PurchasedItems_Equipment" Association="Self.FK_PurchasedItems_Equipment">
             <End Role="Equipment" EntitySet="Equipments" />
             <End Role="PurchasedItems" EntitySet="PurchasedItems" />
           </AssociationSet>
-          <AssociationSet Name="FK_Loadout_Ninja" Association="Self.FK_Loadout_Ninja">
+          <AssociationSet Name="FK_Loadout_loadout" Association="Self.FK_Loadout_loadout">
             <End Role="Ninja" EntitySet="Ninjas" />
             <End Role="Loadout" EntitySet="Loadouts" />
           </AssociationSet>
-          <AssociationSet Name="FK_PurchasedItems_Ninja" Association="Self.FK_PurchasedItems_Ninja">
+          <AssociationSet Name="FK_LoadoutItems_Loadout" Association="Self.FK_LoadoutItems_Loadout">
+            <End Role="Loadout" EntitySet="Loadouts" />
+            <End Role="LoadoutItems" EntitySet="LoadoutItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PurchasedItems_loadout" Association="Self.FK_PurchasedItems_loadout">
             <End Role="Ninja" EntitySet="Ninjas" />
             <End Role="PurchasedItems" EntitySet="PurchasedItems" />
-          </AssociationSet>
-          <AssociationSet Name="Loadout_has_Equipment" Association="Self.Loadout_has_Equipment">
-            <End Role="Equipment" EntitySet="Equipments" />
-            <End Role="Loadout" EntitySet="Loadouts" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -386,23 +420,23 @@ warning 6002: The table/view 'LeagueOfNinjas.sys.database_firewall_rules' does n
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="LeagueOfNinjasModelStoreContainer" CdmEntityContainer="Entities">
+        <EntityContainerMapping StorageEntityContainer="DatabaseStoreContainer" CdmEntityContainer="Entities">
           <EntitySetMapping Name="C__RefactorLog">
-            <EntityTypeMapping TypeName="LeagueOfNinjasModel.C__RefactorLog">
+            <EntityTypeMapping TypeName="Database.C__RefactorLog">
               <MappingFragment StoreEntitySet="__RefactorLog">
                 <ScalarProperty Name="OperationKey" ColumnName="OperationKey" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Categories">
-            <EntityTypeMapping TypeName="LeagueOfNinjasModel.Category">
+            <EntityTypeMapping TypeName="Database.Category">
               <MappingFragment StoreEntitySet="Category">
                 <ScalarProperty Name="Type" ColumnName="Type" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Equipments">
-            <EntityTypeMapping TypeName="LeagueOfNinjasModel.Equipment">
+            <EntityTypeMapping TypeName="Database.Equipment">
               <MappingFragment StoreEntitySet="Equipment">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Type" ColumnName="Type" />
@@ -416,15 +450,25 @@ warning 6002: The table/view 'LeagueOfNinjas.sys.database_firewall_rules' does n
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Loadouts">
-            <EntityTypeMapping TypeName="LeagueOfNinjasModel.Loadout">
+            <EntityTypeMapping TypeName="Database.Loadout">
               <MappingFragment StoreEntitySet="Loadout">
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Ninja" ColumnName="Ninja" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="LoadoutItems">
+            <EntityTypeMapping TypeName="Database.LoadoutItem">
+              <MappingFragment StoreEntitySet="LoadoutItems">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Loadout" ColumnName="Loadout" />
+                <ScalarProperty Name="Equipment" ColumnName="Equipment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Ninjas">
-            <EntityTypeMapping TypeName="LeagueOfNinjasModel.Ninja">
+            <EntityTypeMapping TypeName="Database.Ninja">
               <MappingFragment StoreEntitySet="Ninja">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Gold" ColumnName="Gold" />
@@ -433,7 +477,7 @@ warning 6002: The table/view 'LeagueOfNinjas.sys.database_firewall_rules' does n
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PurchasedItems">
-            <EntityTypeMapping TypeName="LeagueOfNinjasModel.PurchasedItem">
+            <EntityTypeMapping TypeName="Database.PurchasedItem">
               <MappingFragment StoreEntitySet="PurchasedItems">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Ninja" ColumnName="Ninja" />
@@ -442,7 +486,7 @@ warning 6002: The table/view 'LeagueOfNinjas.sys.database_firewall_rules' does n
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="database_firewall_rules">
-            <EntityTypeMapping TypeName="LeagueOfNinjasModel.database_firewall_rules">
+            <EntityTypeMapping TypeName="Database.database_firewall_rules">
               <MappingFragment StoreEntitySet="database_firewall_rules">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="name" ColumnName="name" />
@@ -453,14 +497,6 @@ warning 6002: The table/view 'LeagueOfNinjas.sys.database_firewall_rules' does n
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="Loadout_has_Equipment" TypeName="LeagueOfNinjasModel.Loadout_has_Equipment" StoreEntitySet="Loadout_has_Equipment">
-            <EndProperty Name="Equipment">
-              <ScalarProperty Name="Id" ColumnName="Equipment" />
-            </EndProperty>
-            <EndProperty Name="Loadout">
-              <ScalarProperty Name="Id" ColumnName="Loadout" />
-            </EndProperty>
-          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -29,6 +29,7 @@ namespace PROG5_LeagueOfNinjas.Data
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Equipment> Equipments { get; set; }
         public virtual DbSet<Loadout> Loadouts { get; set; }
+        public virtual DbSet<LoadoutItem> LoadoutItems { get; set; }
         public virtual DbSet<Ninja> Ninjas { get; set; }
         public virtual DbSet<PurchasedItem> PurchasedItems { get; set; }
         public virtual DbSet<database_firewall_rules> database_firewall_rules { get; set; }

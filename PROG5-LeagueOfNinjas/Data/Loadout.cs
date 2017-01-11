@@ -17,14 +17,15 @@ namespace PROG5_LeagueOfNinjas.Data
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Loadout()
         {
-            this.Equipments = new HashSet<Equipment>();
+            this.LoadoutItems = new HashSet<LoadoutItem>();
         }
     
         public int Id { get; set; }
+        public string Name { get; set; }
         public int Ninja { get; set; }
     
         public virtual Ninja Ninja1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Equipment> Equipments { get; set; }
+        public virtual ICollection<LoadoutItem> LoadoutItems { get; set; }
     }
 }

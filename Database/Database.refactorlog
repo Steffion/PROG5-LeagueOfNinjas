@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
   <Operation Name="Rename Refactor" Key="949eae07-ff1a-4e6c-a27d-d1c53900f21a" ChangeDateTime="10/21/2016 14:01:14">
-    <Property Name="ElementName" Value="[dbo].[Loadout_has_Equipment].[Id]" />
+    <Property Name="ElementName" Value="[dbo].[LoadoutItems].[Id]" />
     <Property Name="ElementType" Value="SqlSimpleColumn" />
-    <Property Name="ParentElementName" Value="[dbo].[Loadout_has_Equipment]" />
+    <Property Name="ParentElementName" Value="[dbo].[LoadoutItems]" />
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="Loadout" />
   </Operation>
