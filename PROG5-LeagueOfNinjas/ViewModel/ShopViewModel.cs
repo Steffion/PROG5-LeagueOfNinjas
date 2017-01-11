@@ -1,8 +1,10 @@
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using PROG5_LeagueOfNinjas.Data;
+using PROG5_LeagueOfNinjas.Model;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Drawing;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
@@ -56,9 +58,22 @@ namespace PROG5_LeagueOfNinjas.ViewModel
             {
                 _selectedEquipment = value;
                 RaisePropertyChanged("SelectedEquipment");
+
+                if (_selectedEquipment != null && _selectedEquipment.Image != null)
+                {
+                    SelectedEquipmentImage = _selectedEquipment.Image;
+                }
+                else
+                {
+                    SelectedEquipmentImage = null;
+                }
+
+                RaisePropertyChanged("SelectedEquipmentImage");
                 RaisePropertyChanged("IsEquipmentSelected");
             }
         }
+
+        public byte[] SelectedEquipmentImage { get; set; }
 
         public bool IsEquipmentSelected
         {

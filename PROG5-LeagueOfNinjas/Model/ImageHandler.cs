@@ -16,12 +16,5 @@ namespace PROG5_LeagueOfNinjas.Model
             stream.CopyTo(ms);
             return ms.ToArray();
         }
-
-        public static Image ConvertBackToImage(byte[] byteArrayIn)
-        {
-            MemoryStream ms = new MemoryStream(byteArrayIn);
-            Image returnImage = Image.FromStream(ms);
-            return returnImage;
-        }
     }
 }

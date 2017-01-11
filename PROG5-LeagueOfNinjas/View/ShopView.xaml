@@ -34,7 +34,7 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
-                <TextBlock Grid.Row="0" Text="HIER MOET PLAATJE ETC KOMEN //TODO @MEREL" TextWrapping="Wrap" />
+                <Image Grid.Row="0" Source="{Binding SelectedEquipmentImage}" />
 
                 <Grid Grid.Row="1">
                     <Grid.ColumnDefinitions>
