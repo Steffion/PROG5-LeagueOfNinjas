@@ -27,9 +27,9 @@
                 <RowDefinition Height="25*"/>
                 <RowDefinition Height="32*"/>
             </Grid.RowDefinitions>
-            <Button Grid.Row="0" Margin="20,5,19.6,4" Command="{Binding NinjaAddCommand}">Nieuwe ninja aanmaken</Button>
-            <Button Grid.Row="1" Margin="20,6,19.6,3" Command="{Binding NinjaEditCommand}" IsEnabled="{Binding IsNinjaSelected}">Wijzig ninja</Button>
-            <Button Grid.Row="2" Margin="20,7,19.6,3" Command="{Binding NinjaDeleteCommand}" IsEnabled="{Binding IsNinjaSelected}">Verwijder ninja</Button>
+            <Button Grid.Row="0" Margin="20,5,19.6,4" Command="{Binding NinjaAddCommand}">Add Ninja</Button>
+            <Button Grid.Row="1" Margin="20,6,19.6,3" Command="{Binding NinjaEditCommand}" IsEnabled="{Binding IsNinjaSelected}">Edit Ninja</Button>
+            <Button Grid.Row="2" Margin="20,7,19.6,3" Command="{Binding NinjaDeleteCommand}" IsEnabled="{Binding IsNinjaSelected}">Delete Ninja</Button>
         </Grid>
     </Grid>
 </UserControl>
