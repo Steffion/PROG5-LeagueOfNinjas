@@ -122,7 +122,7 @@
     </Compile>
     <Compile Include="Validation\IntLowerThan1ValidationRule.cs" />
     <Compile Include="Validation\StringNotNullAndNotEmptyValidationRule.cs" />
-    <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\ShopViewModel.cs" />
     <Compile Include="ViewModel\Ninjas\NinjaEditViewModel.cs" />
     <Compile Include="ViewModel\Ninjas\NinjaCreateViewModel.cs" />
     <Compile Include="ViewModel\Ninjas\NinjaListViewModel.cs" />
@@ -136,7 +136,7 @@
     <Compile Include="View\Ninjas\NinjaListView.xaml.cs">
       <DependentUpon>NinjaListView.xaml</DependentUpon>
     </Compile>
-    <Page Include="MainWindow.xaml">
+    <Page Include="View\ShopWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -144,8 +144,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
+    <Compile Include="View\ShopWindow.xaml.cs">
+      <DependentUpon>ShopWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Page Include="View\Ninjas\NinjaEditView.xaml">

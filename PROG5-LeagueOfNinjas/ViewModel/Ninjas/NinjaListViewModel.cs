@@ -19,7 +19,7 @@ namespace PROG5_LeagueOfNinjas.ViewModel.Ninjas
         private Ninja _selectedNinja;
         private NinjaCreateView _createView;
         private NinjaEditView _editView;
-        private MainWindow _mainWindow;
+        private ShopWindow _ShopWindow;
 
         public ICommand NinjaAddCommand { get; set; }
         public ICommand NinjaEditCommand { get; set; }
@@ -99,9 +99,9 @@ namespace PROG5_LeagueOfNinjas.ViewModel.Ninjas
 
         public void SelectNinja()
         {
-            _mainWindow = new MainWindow();
-            Application.Current.MainWindow.Close();
-            _mainWindow.Show();
+            _ShopWindow = new ShopWindow();
+            Application.Current.ShopWindow.Close();
+            _ShopWindow.Show();
         }
     }
 }

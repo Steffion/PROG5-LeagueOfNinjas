@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace PROG5_LeagueOfNinjas
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for ShopWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class ShopWindow : Window
     {
-        public MainWindow()
+        public ShopWindow()
         {
             InitializeComponent();
         }
