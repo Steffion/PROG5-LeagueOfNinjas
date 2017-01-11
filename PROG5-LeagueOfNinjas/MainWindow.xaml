@@ -7,6 +7,32 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        
+        <Grid HorizontalAlignment="Left" Height="319" VerticalAlignment="Top" Width="144">
+            <ListView x:Name="listView" HorizontalAlignment="Left" Height="319" VerticalAlignment="Top" Width="144">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Grid>
+        <Grid HorizontalAlignment="Left" Height="319" VerticalAlignment="Top" Width="154" Margin="144,0,0,0">
+            <ListView x:Name="listView1" HorizontalAlignment="Left" Height="319" VerticalAlignment="Top" Width="154">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Grid>
+        <Grid HorizontalAlignment="Left" Height="319" VerticalAlignment="Top" Width="219" Margin="298,0,0,0">
+            <Grid HorizontalAlignment="Left" Height="143" VerticalAlignment="Top" Width="219"/>
+            <Label x:Name="label" Content="Name" HorizontalAlignment="Left" Height="30" Margin="0,143,0,0" VerticalAlignment="Top" Width="219"/>
+            <Label x:Name="label_Copy" Content="Strength" HorizontalAlignment="Left" Height="30" Margin="0,173,0,0" VerticalAlignment="Top" Width="219"/>
+            <Label x:Name="label_Copy1" Content="Agility" HorizontalAlignment="Left" Height="30" Margin="0,203,0,0" VerticalAlignment="Top" Width="219"/>
+            <Label x:Name="label_Copy2" Content="Intelligence" HorizontalAlignment="Left" Height="30" Margin="0,233,0,0" VerticalAlignment="Top" Width="219"/>
+            <Button x:Name="button" Content="Buy" HorizontalAlignment="Left" Height="30" Margin="0,289,0,0" VerticalAlignment="Top" Width="219"/>
+        </Grid>
+
     </Grid>
 </Window>
