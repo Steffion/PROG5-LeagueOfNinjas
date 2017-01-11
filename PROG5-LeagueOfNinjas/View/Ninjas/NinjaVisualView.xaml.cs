@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace PROG5_LeagueOfNinjas.View.Ninjas
 {
     /// <summary>
-    /// Interaction logic for NinjaListView.xaml
+    /// Interaction logic for NinjaVisualView.xaml
     /// </summary>
-    public partial class NinjaListView : UserControl
+    public partial class NinjaVisualView : Window
     {
-        public NinjaListView()
+        public NinjaVisualView()
         {
             InitializeComponent();
         }

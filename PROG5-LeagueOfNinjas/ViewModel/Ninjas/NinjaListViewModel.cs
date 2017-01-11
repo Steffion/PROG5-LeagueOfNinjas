@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using PROG5_LeagueOfNinjas.View.Ninjas;
+using System.Windows;
 
 namespace PROG5_LeagueOfNinjas.ViewModel.Ninjas
 {
@@ -22,6 +23,7 @@ namespace PROG5_LeagueOfNinjas.ViewModel.Ninjas
         public ICommand NinjaAddCommand { get; set; }
         public ICommand NinjaEditCommand { get; set; }
         public ICommand NinjaDeleteCommand { get; set; }
+        public ICommand NinjaSelectCommand { get; set; }
 
         public NinjaListViewModel(LeagueOfNinjasDatabaseEntities database)
         {

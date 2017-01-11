@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -126,6 +126,7 @@
     <Compile Include="ViewModel\Equipment\EquipmentEditViewModel.cs" />
     <Compile Include="ViewModel\Equipment\EquipmentListViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\ShopViewModel.cs" />
     <Compile Include="ViewModel\Ninjas\NinjaEditViewModel.cs" />
     <Compile Include="ViewModel\Ninjas\NinjaCreateViewModel.cs" />
     <Compile Include="ViewModel\Ninjas\NinjaListViewModel.cs" />
@@ -139,6 +140,9 @@
     <Compile Include="View\Equipment\EquipmentListView.xaml.cs">
       <DependentUpon>EquipmentListView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\MainView.xaml.cs">
+      <DependentUpon>MainView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Ninjas\NinjaEditView.xaml.cs">
       <DependentUpon>NinjaEditView.xaml</DependentUpon>
     </Compile>
@@ -148,7 +152,18 @@
     <Compile Include="View\Ninjas\NinjaListView.xaml.cs">
       <DependentUpon>NinjaListView.xaml</DependentUpon>
     </Compile>
-    <Page Include="MainWindow.xaml">
+    <Compile Include="View\ShopView.xaml.cs">
+      <DependentUpon>ShopView.xaml</DependentUpon>
+    </Compile>
+    <Page Include="View\MainView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Ninjas\NinjaVisualView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\ShopView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -156,9 +171,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
-      <SubType>Code</SubType>
+    <Compile Include="View\Ninjas\NinjaVisualView.xaml.cs">
+      <DependentUpon>NinjaVisualView.xaml</DependentUpon>
     </Compile>
     <Page Include="View\Equipment\EquipmentCreateView.xaml">
       <SubType>Designer</SubType>
@@ -234,6 +248,7 @@
       <DependentUpon>Database.edmx</DependentUpon>
       <LastGenOutput>Database.cs</LastGenOutput>
     </Content>
+    <Resource Include="Resources\Shen.png" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

@@ -12,14 +12,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace PROG5_LeagueOfNinjas.View.Ninjas
+namespace PROG5_LeagueOfNinjas.View
 {
     /// <summary>
-    /// Interaction logic for NinjaListView.xaml
+    /// Interaction logic for MainView.xaml
     /// </summary>
-    public partial class NinjaListView : UserControl
+    public partial class MainView : Window
     {
-        public NinjaListView()
+        public MainView()
         {
             InitializeComponent();
         }
