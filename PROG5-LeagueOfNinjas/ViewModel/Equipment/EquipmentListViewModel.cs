@@ -73,7 +73,7 @@ namespace PROG5_LeagueOfNinjas.ViewModel.Equipment
         public void closeEditEquipment()
         {
             _editView.Close();
-            RaisePropertyChanged("Equipments");
+            RaisePropertyChanged("Equipment");
         }
         public void CreateEquipment()
         {
@@ -84,14 +84,14 @@ namespace PROG5_LeagueOfNinjas.ViewModel.Equipment
         public void CloseCreateEquipment()
         {
             _createView.Close();
-            RaisePropertyChanged("Equipments");
+            RaisePropertyChanged("Equipment");
         }
 
         public void DeleteEquipment()
         {
             _database.Equipments.Remove(_selectedEquipment);
             _database.SaveChanges();
-            RaisePropertyChanged("Equipments");
+            RaisePropertyChanged("Equipment");
         }
     }
 }
