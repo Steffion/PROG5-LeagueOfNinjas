@@ -10,7 +10,7 @@ namespace PROG5_LeagueOfNinjas.ViewModel
     {
         private LeagueOfNinjasDatabaseEntities _database;
         private Category _selectedCategory;
-        private Equipment _selectedEquipment;
+        private Data.Equipment _selectedEquipment;
 
         public ShopViewModel(LeagueOfNinjasDatabaseEntities database)
         {
@@ -21,7 +21,7 @@ namespace PROG5_LeagueOfNinjas.ViewModel
 
         public List<Category> Categories { get; set; }
 
-        public ObservableCollection<Equipment> Equipment { get; set; }
+        public ObservableCollection<Data.Equipment> Equipment { get; set; }
 
         public Category SelectedCategory
         {
@@ -37,7 +37,7 @@ namespace PROG5_LeagueOfNinjas.ViewModel
             }
         }
 
-        public Equipment SelectedEquipment
+        public Data.Equipment SelectedEquipment
         {
             get
             {
@@ -53,7 +53,7 @@ namespace PROG5_LeagueOfNinjas.ViewModel
 
         public void UpdateEquipment()
         {
-            Equipment = new ObservableCollection<Equipment>(SelectedCategory.Equipments);
+            Equipment = new ObservableCollection<Data.Equipment>(SelectedCategory.Equipments);
             RaisePropertyChanged("Equipment");
         }
     }

@@ -1,6 +1,7 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using PROG5_LeagueOfNinjas.Data;
+using PROG5_LeagueOfNinjas.View.Equipment;
 using PROG5_LeagueOfNinjas.View.Ninjas;
 using System;
 using System.Collections.Generic;
@@ -88,7 +89,7 @@ namespace PROG5_LeagueOfNinjas.ViewModel
 
         public void OpenEquipment()
         {
-            CurrentView = new NinjaListView();
+            CurrentView = new EquipmentListView();
         }
     }
 }
