@@ -1,38 +1,35 @@
 ﻿using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
-using PROG5_LeagueOfNinjas.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Input;
+using GalaSoft.MvvmLight.Command;
+using PROG5_LeagueOfNinjas.Data;
+using PROG5_LeagueOfNinjas.ViewModel.Ninjas;
 
 namespace PROG5_LeagueOfNinjas.ViewModel.Equipment
 {
-    public class EquipmentEditViewModel : ViewModelBase
+    public class EquipmentCreateViewModel : ViewModelBase
     {
-        private Data.Equipment _equipmentItem;
+        private Data.Equipment _equipment;
+        private string _equipmentName;
+        private int _equipmentValue;
         private EquipmentListViewModel _listViewModel;
         private LeagueOfNinjasDatabaseEntities _database;
-
-        private LeagueOfNinjasDatabaseEntities database;
-        private EquipmentListViewModel equipmentListViewModel;
-
-        private string _equipmentName;
-        private int _equipmentCost;
 
         public ICommand CancelCommand { get; set; }
         public ICommand SaveCommand { get; set; }
 
-        public EquipmentEditViewModel(EquipmentListViewModel equipmentListViewModel, LeagueOfNinjasDatabaseEntities database)
+        public EquipmentCreateViewModel(EquipmentListViewModel listViewModel, LeagueOfNinjasDatabaseEntities database)
         {
-            _listViewModel = equipmentListViewModel;
-            _equipmentItem = _listViewModel.SelectedEquipment;
+            _equipment = new Data.Equipment();
+            _equipmentName = "New Item";
+            _equipmentValue = 500;
+            _listViewModel = listViewModel;
             _database = database;
-            _equipmentName = _equipmentItem.Name;
-            _equipmentCost = _equipmentItem.Value;
+
             CancelCommand = new RelayCommand(Cancel);
             SaveCommand = new RelayCommand(Save);
         }
@@ -41,12 +38,12 @@ namespace PROG5_LeagueOfNinjas.ViewModel.Equipment
         {
             get
             {
-                return _equipmentItem;
+                return _equipment;
             }
 
             set
             {
-                _equipmentItem = value;
+                _equipment = value;
                 RaisePropertyChanged("Equipment");
             }
         }
@@ -69,27 +66,28 @@ namespace PROG5_LeagueOfNinjas.ViewModel.Equipment
         {
             get
             {
-                return _equipmentCost;
+                return _equipmentValue;
             }
 
             set
             {
-                _equipmentCost = value;
+                _equipmentValue = value;
                 RaisePropertyChanged("EquipmentValue");
             }
         }
 
         public void Cancel()
         {
-            _listViewModel.closeEditEquipment();
+            _listViewModel.CloseCreateEquipment();
         }
 
         public void Save()
         {
-            _equipmentItem.Name = EquipmentName;
-            _equipmentItem.Value = EquipmentValue;
+            _equipment.Name = EquipmentName;
+            _equipment.Value = EquipmentValue;
+            _database.Equipments.Add(_equipment);
             _database.SaveChanges();
-            _listViewModel.closeEditEquipment();
+            _listViewModel.CloseCreateEquipment();
         }
     }
 }

@@ -15,46 +15,52 @@ namespace PROG5_LeagueOfNinjas.ViewModel.Equipment
     public class EquipmentListViewModel : ViewModelBase
     {
         private LeagueOfNinjasDatabaseEntities _database;
-        private Ninja _selectedNinja;
+        private Data.Equipment _selectedEquipment;
         private EquipmentEditView _editView;
+        private EquipmentCreateView _createView;
 
         public ICommand EquipmentEditCommand { get; set; }
+        public ICommand EquipmentCreateCommand { get; set; }
+        public ICommand EquipmentDeleteCommand { get; set; }
 
         public EquipmentListViewModel(LeagueOfNinjasDatabaseEntities database)
         {
             _database = database;
 
             EquipmentEditCommand = new RelayCommand(editEquipment);
+            EquipmentCreateCommand = new RelayCommand(CreateEquipment);
+            EquipmentDeleteCommand = new RelayCommand(DeleteEquipment);
+
         }
 
-        public ObservableCollection<Ninja> Ninjas
+        public ObservableCollection<Data.Equipment> Equipment
         {
             get
             {
-                return new ObservableCollection<Ninja>(_database.Ninjas);
+                return new ObservableCollection<Data.Equipment>(_database.Equipments);
             }
         }
 
-        public bool IsNinjaSelected
+        public bool IsEquipmentSelected
         {
             get
             {
-                return _selectedNinja != null;
+                return _selectedEquipment != null;
             }
         }
 
-        public Ninja SelectedNinja
+        public Data.Equipment SelectedEquipment
         {
             get
             {
-                return _selectedNinja;
+                return _selectedEquipment;
             }
 
             set
             {
-                _selectedNinja = value;
-                RaisePropertyChanged("SelectedNinja");
-                RaisePropertyChanged("IsNinjaSelected");
+                _selectedEquipment = value;
+                RaisePropertyChanged("SelectedEquipMent");
+                RaisePropertyChanged("IsEquipmentSelected");
             }
         }
 
@@ -67,7 +73,25 @@ namespace PROG5_LeagueOfNinjas.ViewModel.Equipment
         public void closeEditEquipment()
         {
             _editView.Close();
-            //_editView.ShowDialog();
+            RaisePropertyChanged("Equipments");
+        }
+        public void CreateEquipment()
+        {
+            _createView = new EquipmentCreateView();
+            _createView.ShowDialog();
+        }
+
+        public void CloseCreateEquipment()
+        {
+            _createView.Close();
+            RaisePropertyChanged("Equipments");
+        }
+
+        public void DeleteEquipment()
+        {
+            _database.Equipments.Remove(_selectedEquipment);
+            _database.SaveChanges();
+            RaisePropertyChanged("Equipments");
         }
     }
 }

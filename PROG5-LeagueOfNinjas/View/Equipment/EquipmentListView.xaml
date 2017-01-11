@@ -10,10 +10,10 @@
         DataContext="{Binding Source={StaticResource Locator}, Path=EquipmentListViewModel}">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.5*" />
-            <ColumnDefinition Width="0.5*" />
+            <ColumnDefinition />
+            <ColumnDefinition Width="246" />
         </Grid.ColumnDefinitions>
-        <ListBox Grid.Column="0" SelectedItem="{Binding SelectedNinja}" ItemsSource="{Binding Ninjas}">
+        <ListBox Grid.Column="0" SelectedItem="{Binding SelectedEquipment}" ItemsSource="{Binding Equipment}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding Name}" />
@@ -21,10 +21,9 @@
             </ListBox.ItemTemplate>
         </ListBox>
         <Grid Grid.Column="1">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
-            <Button Grid.Row="0" Margin="20,5" Command="{Binding EquipmentEditCommand}">Equipment aanpassen</Button>
+            <Button Grid.Row="0" VerticalAlignment="Top" Height="20" Margin="10,10,10,20" Command="{Binding EquipmentEditCommand}">Equipment Aanpassen</Button>
+            <Button Grid.Row="0" VerticalAlignment="Top" Height="20" Margin="10,40,10,0" Command="{Binding EquipmentCreateCommand}" IsEnabled="{Binding IsEquipmentSelected}">Equipment Toevoegen</Button>
+            <Button Grid.Row="0" VerticalAlignment="Top" Height="20" Margin="10,70,10,20" Command="{Binding EquipmentDeleteCommand}" IsEnabled="{Binding IsEquipmentSelected}">Equipment Verwijderen</Button>
         </Grid>
     </Grid>
 </Window>

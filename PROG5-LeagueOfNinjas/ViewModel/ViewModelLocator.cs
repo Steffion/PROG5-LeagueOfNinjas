@@ -72,6 +72,14 @@ namespace PROG5_LeagueOfNinjas.ViewModel
                 return new EquipmentEditViewModel(EquipmentListViewModel, Database);
             }
         }
+
+        public EquipmentCreateViewModel EquipmentCreateViewModel
+        {
+            get
+            {
+                return new EquipmentCreateViewModel(EquipmentListViewModel, Database);
+            }
+        }
         #endregion
 
         #region Ninja CRUD
