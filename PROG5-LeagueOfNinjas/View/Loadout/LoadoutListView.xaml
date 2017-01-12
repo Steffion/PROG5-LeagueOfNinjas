@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="PROG5_LeagueOfNinjas.View.Loadout.LoadoutListView"
+﻿<Window x:Class="PROG5_LeagueOfNinjas.View.Loadout.LoadoutListView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -23,10 +23,13 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-            <Button Grid.Row="0" Margin="20,5" Command="{Binding LoadoutAddCommand}" IsEnabled="{Binding IsNinjaSelected}">Create Loadout</Button>
-            <Button Grid.Row="1" Margin="20,5" Command="{Binding LoadoutEditCommand}" IsEnabled="{Binding IsLoadoutSelected}">Edit Loadout</Button>
-            <Button Grid.Row="2" Margin="20,5" Command="{Binding LoadoutDeleteCommand}" IsEnabled="{Binding IsLoadoutSelected}">Delete Loadout</Button>
+            <Button Grid.Row="0" Margin="20,5" Command="{Binding LoadoutEditCommand}" IsEnabled="{Binding IsLoadoutSelected}">Edit Loadout</Button>
+            <Button Grid.Row="1" Margin="20,5" Command="{Binding LoadoutDeleteCommand}" IsEnabled="{Binding IsLoadoutSelected}">Delete Loadout</Button>
+            <Button Grid.Row="2" Margin="20,5" Command="{Binding LoadoutAddCommand}">Create Loadout</Button>
+            <Button Width="100" HorizontalAlignment="Left"  Grid.Row="3" Margin="20,5" Command="{Binding cancelCommand}" >Cancel</Button>
+            <Button Width="100" HorizontalAlignment="Right" Grid.Row="3" Margin="20,5" Command="{Binding saveCommand}" >Save</Button>
         </Grid>
     </Grid>
-</UserControl>
+</Window>

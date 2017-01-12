@@ -17,7 +17,7 @@ namespace PROG5_LeagueOfNinjas.View.Loadout
     /// <summary>
     /// Interaction logic for NinjaListView.xaml
     /// </summary>
-    public partial class LoadoutListView : UserControl
+    public partial class LoadoutListView : Window
     {
         public LoadoutListView()
         {

@@ -10,6 +10,7 @@ using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using PROG5_LeagueOfNinjas.View.Ninjas;
 using System.Windows;
+using PROG5_LeagueOfNinjas.View.Loadout;
 
 namespace PROG5_LeagueOfNinjas.ViewModel.Ninjas
 {
@@ -19,11 +20,13 @@ namespace PROG5_LeagueOfNinjas.ViewModel.Ninjas
         private Ninja _selectedNinja;
         private NinjaCreateView _createView;
         private NinjaEditView _editView;
+        private LoadoutListView _loadOutView;
 
         public ICommand NinjaAddCommand { get; set; }
         public ICommand NinjaEditCommand { get; set; }
         public ICommand NinjaDeleteCommand { get; set; }
         public ICommand NinjaSelectCommand { get; set; }
+        public ICommand openLoadOutCommand { get; set; }
 
         public NinjaListViewModel(Entities database)
         {
@@ -32,6 +35,7 @@ namespace PROG5_LeagueOfNinjas.ViewModel.Ninjas
             NinjaAddCommand = new RelayCommand(OpenCreateWindow);
             NinjaEditCommand = new RelayCommand(EditNinja);
             NinjaDeleteCommand = new RelayCommand(DeleteNinja);
+            openLoadOutCommand = new RelayCommand(openLoadOut);
         }
 
         public ObservableCollection<Ninja> Ninjas
@@ -47,6 +51,12 @@ namespace PROG5_LeagueOfNinjas.ViewModel.Ninjas
             get {
                 return _selectedNinja != null;
             }
+        }
+
+        public void openLoadOut()
+        {
+            _loadOutView = new LoadoutListView();
+            _loadOutView.ShowDialog();
         }
 
         public Ninja SelectedNinja
@@ -74,6 +84,12 @@ namespace PROG5_LeagueOfNinjas.ViewModel.Ninjas
         {
             _createView.Close();
             RaisePropertyChanged("Ninjas");
+        }
+
+        public void CloseLoadOutWindow()
+        {
+            _loadOutView.Close();
+            RaisePropertyChanged("LoadOut");
         }
 
         public void EditNinja()

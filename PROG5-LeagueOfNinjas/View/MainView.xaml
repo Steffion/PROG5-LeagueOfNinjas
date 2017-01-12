@@ -23,7 +23,6 @@
                 <StackPanel Grid.Row="0" VerticalAlignment="Stretch">
                     <Button Content="Ninja's" Command="{Binding OpenNinjasCommand}" />
                     <Button Content="Shop" Command="{Binding OpenShopCommand}" />
-                    <Button Content="Loadout" Command="{Binding OpenLoadoutCommand}" />
                     <Button Content="Equipment (admin)" Command="{Binding OpenEquipmentCommand}"  />
                     <Button Content="NinjaVisualView" Command="{Binding OpenVisualNinjaCommand}"  >
                         <Button.Style>

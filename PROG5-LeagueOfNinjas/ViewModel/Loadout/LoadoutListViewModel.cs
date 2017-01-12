@@ -10,6 +10,8 @@ using GalaSoft.MvvmLight.Command;
 using System.Windows;
 using PROG5_LeagueOfNinjas.Data;
 using PROG5_LeagueOfNinjas.View.Loadout;
+using PROG5_LeagueOfNinjas.View.Ninjas;
+using PROG5_LeagueOfNinjas.ViewModel.Ninjas;
 
 namespace PROG5_LeagueOfNinjas.ViewModel.Loadout
 {
@@ -19,19 +21,26 @@ namespace PROG5_LeagueOfNinjas.ViewModel.Loadout
         private Data.Loadout _selectedLoadout;
         private LoadoutCreateView _createView;
         private LoadoutEditView _editView;
+        private NinjaListViewModel _listView;
 
         public ICommand LoadoutAddCommand { get; set; }
         public ICommand LoadoutEditCommand { get; set; }
         public ICommand LoadoutDeleteCommand { get; set; }
         public ICommand LoadoutSelectCommand { get; set; }
+        public ICommand saveCommand { get; set; }
+        public ICommand cancelCommand { get; set; }
 
-        public LoadoutListViewModel(Entities database)
+        public LoadoutListViewModel(Entities database, NinjaListViewModel listview)
         {
             _database = database;
+
+            _listView = listview;
 
             LoadoutAddCommand = new RelayCommand(OpenCreateWindow);
             LoadoutEditCommand = new RelayCommand(EditLoadout);
             LoadoutDeleteCommand = new RelayCommand(DeleteLoadout);
+            saveCommand = new RelayCommand(save);
+            cancelCommand = new RelayCommand(cancel);
         }
 
         public ObservableCollection<Data.Loadout> Loadouts
@@ -73,6 +82,11 @@ namespace PROG5_LeagueOfNinjas.ViewModel.Loadout
             }
         }
 
+        public Ninja getSelectedNinja()
+        {
+            return _listView.SelectedNinja;
+        }
+
         public void OpenCreateWindow()
         {
             _createView = new LoadoutCreateView();
@@ -89,6 +103,17 @@ namespace PROG5_LeagueOfNinjas.ViewModel.Loadout
         {
             _editView = new LoadoutEditView();
             _editView.ShowDialog();
+        }
+
+        public void cancel()
+        {
+            _listView.CloseLoadOutWindow();
+        }
+
+        public void save()
+        {
+            // save changes to db
+            _listView.CloseLoadOutWindow();
         }
 
         public void CloseEditWindow()
