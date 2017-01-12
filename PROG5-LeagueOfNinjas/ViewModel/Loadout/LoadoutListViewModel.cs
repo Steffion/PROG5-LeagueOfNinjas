@@ -47,6 +47,17 @@ namespace PROG5_LeagueOfNinjas.ViewModel.Loadout
         {
             get
             {
+                //ObservableCollection<Data.Loadout> collection = new ObservableCollection<Data.Loadout>(_database.Loadouts);
+                //if (collection != null)
+                //{
+                //    foreach (var loadOut in collection)
+                //    {
+                //        if (loadOut.Ninja != _listView.SelectedNinja.Id)
+                //        {
+                //            collection.Remove(loadOut);
+                //        }
+                //    }
+                //}
                 return new ObservableCollection<Data.Loadout>(_database.Loadouts);
             }
         }
@@ -55,7 +66,7 @@ namespace PROG5_LeagueOfNinjas.ViewModel.Loadout
         {
             get
             {
-                return MainViewModel.CurrentNinja != null;
+                return _listView.SelectedNinja != null;
             }
         }
 

@@ -22,7 +22,9 @@ namespace PROG5_LeagueOfNinjas.ViewModel.Loadout
         private Data.Equipment _selectedItem;
         private ICollection<Data.Equipment> _loCollection;
         private string itemName;
-        private ICollection<LoadoutItem> _loadoutItems;
+        private List<LoadoutItem> _loadOutList;
+        private ICollection<LoadoutItem> _loadOutItems;
+        private LoadoutItem _newItem;
 
         public ICommand CancelCommand { get; set; }
         public ICommand SaveCommand { get; set; }
@@ -35,8 +37,8 @@ namespace PROG5_LeagueOfNinjas.ViewModel.Loadout
             _listViewModel = listViewModel;
             _database = database;
             _ninja = _listViewModel.getSelectedNinja();
-            _loadoutName = "New Loadout";
-
+            _loadOutList = new List<LoadoutItem>();
+            
             CancelCommand = new RelayCommand(Cancel);
             SaveCommand = new RelayCommand(Save);
             addItemCommand = new RelayCommand(addItem);
@@ -44,10 +46,12 @@ namespace PROG5_LeagueOfNinjas.ViewModel.Loadout
 
         public void addItem()
         {
-            
-                //_loadoutItems.Add((LoadoutItem)_selectedItem);
-                RaisePropertyChanged("addItem");
-                RaisePropertyChanged("isLoadOutNull");
+            _newItem = new LoadoutItem();
+            _newItem.Equipment = selectedItem.Id;
+            _loadOutList.Add(_newItem);
+
+            RaisePropertyChanged("addItem");
+            RaisePropertyChanged("isLoadOutNull");
         }
 
         public bool isItemSeleceted
@@ -62,7 +66,7 @@ namespace PROG5_LeagueOfNinjas.ViewModel.Loadout
                 ObservableCollection<Data.Equipment> purchasedItems =  new ObservableCollection<Data.Equipment>();
                 foreach (var item in _ninja.PurchasedItems)
                 {
-                    purchasedItems.Add((Data.Equipment)item.Equipment1);
+                    purchasedItems.Add(item.Equipment1);
                 }
                 return purchasedItems;
             }
@@ -70,7 +74,7 @@ namespace PROG5_LeagueOfNinjas.ViewModel.Loadout
 
         public bool isLoadOutNull
         {
-            get { return _loadoutItems != null; }
+            get { return _loadOutList != null; }
         }
 
         public Data.Equipment selectedItem
@@ -123,6 +127,11 @@ namespace PROG5_LeagueOfNinjas.ViewModel.Loadout
         public void Save()
         {
             _loadout.Name = LoadoutName;
+            _loadOutItems = _loadOutList;
+            _loadout.LoadoutItems = _loadOutItems;
+            _loadout.Ninja = _ninja.Id;
+
+
             _database.Loadouts.Add(_loadout);
             _database.SaveChanges();
             _listViewModel.CloseCreateWindow();
