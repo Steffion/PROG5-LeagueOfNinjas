@@ -22,6 +22,7 @@ namespace PROG5_LeagueOfNinjas.ViewModel
         private Ninja _selectedNinja;
         private UserControl _currentView;
         private ViewFactory _viewFactory;
+        private NinjaVisualView _visualView;
 
         public static Ninja CurrentNinja { get; set; }
 
@@ -38,6 +39,7 @@ namespace PROG5_LeagueOfNinjas.ViewModel
             OpenLoadoutCommand = new RelayCommand(OpenLoadout);
             OpenEquipmentCommand = new RelayCommand(OpenEquipment);
             RefreshCommand = new RelayCommand(Refresh);
+            OpenVisualNinjaCommand = new RelayCommand(OpenVisual);
         }
 
         public ObservableCollection<Ninja> Ninjas { get; set; }
@@ -47,19 +49,20 @@ namespace PROG5_LeagueOfNinjas.ViewModel
         public ICommand OpenLoadoutCommand { get; set; }
         public ICommand OpenEquipmentCommand { get; set; }
         public ICommand RefreshCommand { get; set; }
+        public ICommand OpenVisualNinjaCommand { get; set; }
 
         public Ninja SelectedNinja
         {
             get
             {
-                return _selectedNinja;
+                return CurrentNinja;
             }
 
             set
             {
-                _selectedNinja = value;
                 CurrentNinja = value;
                 RaisePropertyChanged("SelectedNinja");
+                RaisePropertyChanged("isNinjaSelected");
             }
         }
 
@@ -74,6 +77,18 @@ namespace PROG5_LeagueOfNinjas.ViewModel
             {
                 _currentView = value;
                 RaisePropertyChanged("CurrentView");
+            }
+        }
+
+        public bool isNinjaSelected
+        {
+            get
+            {
+                if (CurrentNinja != null)
+                {
+                    return true;
+                }
+                return false;
             }
         }
 
@@ -95,6 +110,12 @@ namespace PROG5_LeagueOfNinjas.ViewModel
         public void OpenEquipment()
         {
             CurrentView = _viewFactory.GetView("equipment");
+        }
+
+        public void OpenVisual()
+        {
+            _visualView = new NinjaVisualView();
+            _visualView.Show();
         }
 
         public void Refresh()

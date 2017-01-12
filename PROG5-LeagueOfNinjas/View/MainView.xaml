@@ -25,6 +25,21 @@
                     <Button Content="Shop" Command="{Binding OpenShopCommand}" />
                     <Button Content="Loadout" Command="{Binding OpenLoadoutCommand}" />
                     <Button Content="Equipment (admin)" Command="{Binding OpenEquipmentCommand}"  />
+                    <Button Content="NinjaVisualView" Command="{Binding OpenVisualNinjaCommand}"  >
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="IsEnabled" Value="False"/>
+                                <Style.Triggers>
+                                    <MultiDataTrigger>
+                                        <MultiDataTrigger.Conditions>
+                                            <Condition Binding="{Binding Path=isNinjaSelected}" Value="true" />
+                                        </MultiDataTrigger.Conditions>
+                                        <Setter Property="IsEnabled" Value="True"/>
+                                    </MultiDataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
                 </StackPanel>
 
                 <Grid Grid.Row="1">

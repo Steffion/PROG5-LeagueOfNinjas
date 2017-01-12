@@ -67,6 +67,14 @@ namespace PROG5_LeagueOfNinjas.ViewModel
             }
         }
 
+        public NinjaVisualViewModel NinjaVisualViewModel
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<NinjaVisualViewModel>();
+            }
+        }
+
         #region Equipment CRUD
         public EquipmentListViewModel EquipmentListViewModel
         {
