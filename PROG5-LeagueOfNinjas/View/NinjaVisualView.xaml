@@ -5,27 +5,336 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PROG5_LeagueOfNinjas.View.Ninjas"
         mc:Ignorable="d"
-        Title="NinjaVisualView" Height="400" Width="320">
-    <Grid Background="black">
+        DataContext="{Binding Source={StaticResource Locator}, Path=NinjaVisualViewModel}"
+        Title="Your visual Ninja" Height="659.439" Width="1073.596">
+    <Grid>
         <Grid HorizontalAlignment="Left" Height="369" VerticalAlignment="Top" Width="312">
-            <Image Source="/Resources/Shen.png" Margin="0,-10,0,10"/>
-            <Grid HorizontalAlignment="Left" Height="60" Margin="0,309,0,0" VerticalAlignment="Top" Width="312">
-                <Label x:Name="label" Content="Strength" HorizontalAlignment="Left" Height="32" VerticalAlignment="Top" Width="100"/>
-                <Label x:Name="label_Copy" Content="Agility" HorizontalAlignment="Left" Height="32" VerticalAlignment="Top" Width="100" Margin="100,0,0,0"/>
-                <Label x:Name="label_Copy1" Content="Intelligence" HorizontalAlignment="Left" Height="28" VerticalAlignment="Top" Width="100" Margin="0,32,0,0"/>
-                <Label x:Name="label_Copy2" Content="Gear value:" HorizontalAlignment="Left" Height="28" VerticalAlignment="Top" Width="212" Margin="100,32,0,0"/>
-            </Grid>
-            <Label x:Name="label1" Content="Head" HorizontalAlignment="Left" Height="50" Margin="10,10,0,0" VerticalAlignment="Top" Width="70">
-                <!--<Label.Background>
-                    <ImageBrush ImageSource="{Binding Path=""}" />
-                </Label.Background>-->
+            <Image Source="/Resources/Shen.png" Margin="317,44,-484,-157"/>
+            <Label HorizontalAlignment="Left" Height="134" Margin="195,10,-135,0" VerticalAlignment="Top" Width="252">
+                <Grid Background="Transparent">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.4*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <Image Grid.Column="0" Grid.RowSpan="6" Margin="5" Source="{Binding Head.Image}" Width="100" Height="100" />
+                    <TextBlock Grid.Column="1" Grid.Row="0" Margin="5" Text="{Binding Head.Name}" FontWeight="Heavy" />
+                    <TextBlock Grid.Column="1" Grid.Row="1" Margin="5,0">
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{}Type: {0}">
+                                <Binding Path="Head.Type" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                    <TextBlock Grid.Column="1" Grid.Row="2" Margin="5,0">
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{}Value: {0}G">
+                                <Binding Path="Head.Value" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                    <TextBlock Grid.Column="1" Grid.Row="3" Margin="5,0">
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{}Strength: {0}">
+                                <Binding Path="Head.Strength" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                    <TextBlock Grid.Column="1" Grid.Row="4" Margin="5,0">
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{}Intelligence: {0}">
+                                <Binding Path="Head.Intelligence" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                    <TextBlock Grid.Column="1" Grid.Row="5" Margin="5,0">
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{}Agility: {0}">
+                                <Binding Path="Head.Agility" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                </Grid>
             </Label>
-            <Label x:Name="label1_Copy" Content="Chest" HorizontalAlignment="Left" Height="50" Margin="10,102,0,0" VerticalAlignment="Top" Width="70"/>
-            <Label x:Name="label1_Copy1" Content="Panty" HorizontalAlignment="Left" Height="50" Margin="10,203,0,0" VerticalAlignment="Top" Width="70"/>
-            <Label x:Name="label1_Copy2" Content="Shoulders" HorizontalAlignment="Left" Height="50" Margin="232,55,0,0" VerticalAlignment="Top" Width="70"/>
-            <Label x:Name="label1_Copy3" Content="Belt" HorizontalAlignment="Left" Height="50" Margin="232,157,0,0" VerticalAlignment="Top" Width="70"/>
-            <Label x:Name="label1_Copy4" Content="Shoes" HorizontalAlignment="Left" Height="50" Margin="232,242,0,0" VerticalAlignment="Top" Width="70"/>
-            <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="1" Margin="85,51,0,0" Stroke="Black" VerticalAlignment="Top" Width="36" RenderTransformOrigin="0.5,0.5">
+            <Label  HorizontalAlignment="Left" Height="128" Margin="195,159,-123,0" VerticalAlignment="Top" Width="240">
+                <Grid Background="Transparent">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.4*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <Image Grid.Column="0" Grid.RowSpan="6" Margin="5" Source="{Binding Chest.Image}" Width="100" Height="100" />
+                    <TextBlock Grid.Column="1" Grid.Row="0" Margin="5" Text="{Binding Chest.Name}" FontWeight="Heavy" />
+                    <TextBlock Grid.Column="1" Grid.Row="1" Margin="5,0">
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{}Type: {0}">
+                                <Binding Path="Chest.Type" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                    <TextBlock Grid.Column="1" Grid.Row="2" Margin="5,0">
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{}Value: {0}G">
+                                <Binding Path="Chest.Value" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                    <TextBlock Grid.Column="1" Grid.Row="3" Margin="5,0">
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{}Strength: {0}">
+                                <Binding Path="Chest.Strength" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                    <TextBlock Grid.Column="1" Grid.Row="4" Margin="5,0">
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{}Intelligence: {0}">
+                                <Binding Path="Chest.Intelligence" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                    <TextBlock Grid.Column="1" Grid.Row="5" Margin="5,0">
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{}Agility: {0}">
+                                <Binding Path="Chest.Agility" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                </Grid>
+            </Label>
+            <Label HorizontalAlignment="Left" Height="147" Margin="197,287,-123,-65" VerticalAlignment="Top" Width="238">
+                <Grid Background="Transparent">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.4*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <Image Grid.Column="0" Grid.RowSpan="6" Margin="5" Source="{Binding Legs.Image}" Width="100" Height="100" />
+                    <TextBlock Grid.Column="1" Grid.Row="0" Margin="5" Text="{Binding Legs.Name}" FontWeight="Heavy" />
+                    <TextBlock Grid.Column="1" Grid.Row="1" Margin="5,0">
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{}Type: {0}">
+                                <Binding Path="Legs.Type" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                    <TextBlock Grid.Column="1" Grid.Row="2" Margin="5,0">
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{}Value: {0}G">
+                                <Binding Path="Legs.Value" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                    <TextBlock Grid.Column="1" Grid.Row="3" Margin="5,0">
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{}Strength: {0}">
+                                <Binding Path="Head.Strength" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                    <TextBlock Grid.Column="1" Grid.Row="4" Margin="5,0">
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{}Intelligence: {0}">
+                                <Binding Path="Legs.Intelligence" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                    <TextBlock Grid.Column="1" Grid.Row="5" Margin="5,0">
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{}Agility: {0}">
+                                <Binding Path="Legs.Agility" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                </Grid>
+            </Label>
+            <Label HorizontalAlignment="Left" Height="138" Margin="726,92,-702,0" VerticalAlignment="Top" Width="288">
+                <Grid Background="Transparent">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.4*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <Image Grid.Column="0" Grid.RowSpan="6" Margin="5" Source="{Binding Shoulders.Image}" Width="100" Height="100" />
+                    <TextBlock Grid.Column="1" Grid.Row="0" Margin="5" Text="{Binding Shoulders.Name}" FontWeight="Heavy" />
+                    <TextBlock Grid.Column="1" Grid.Row="1" Margin="5,0">
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{}Type: {0}">
+                                <Binding Path="Shoulders.Type" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                    <TextBlock Grid.Column="1" Grid.Row="2" Margin="5,0">
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{}Value: {0}G">
+                                <Binding Path="Shoulders.Value" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                    <TextBlock Grid.Column="1" Grid.Row="3" Margin="5,0">
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{}Strength: {0}">
+                                <Binding Path="Shoulders.Strength" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                    <TextBlock Grid.Column="1" Grid.Row="4" Margin="5,0">
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{}Intelligence: {0}">
+                                <Binding Path="Shoulders.Intelligence" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                    <TextBlock Grid.Column="1" Grid.Row="5" Margin="5,0">
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{}Agility: {0}">
+                                <Binding Path="Shoulders.Agility" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                </Grid>
+            </Label>
+            <Label HorizontalAlignment="Left" Height="134" Margin="744,235,-702,0" VerticalAlignment="Top" Width="270">
+                <Grid Background="Transparent">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.4*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <Image Grid.Column="0" Grid.RowSpan="6" Margin="5" Source="{Binding Belt.Image}" Width="100" Height="100" />
+                    <TextBlock Grid.Column="1" Grid.Row="0" Margin="5" Text="{Binding Belt.Name}" FontWeight="Heavy" />
+                    <TextBlock Grid.Column="1" Grid.Row="1" Margin="5,0">
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{}Type: {0}">
+                                <Binding Path="Belt.Type" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                    <TextBlock Grid.Column="1" Grid.Row="2" Margin="5,0">
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{}Value: {0}G">
+                                <Binding Path="Belt.Value" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                    <TextBlock Grid.Column="1" Grid.Row="3" Margin="5,0">
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{}Strength: {0}">
+                                <Binding Path="Belt.Strength" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                    <TextBlock Grid.Column="1" Grid.Row="4" Margin="5,0">
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{}Intelligence: {0}">
+                                <Binding Path="Belt.Intelligence" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                    <TextBlock Grid.Column="1" Grid.Row="5" Margin="5,0">
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{}Agility: {0}">
+                                <Binding Path="Belt.Agility" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                </Grid>
+            </Label>
+            <Label HorizontalAlignment="Left" Height="152" Margin="744,351,-702,-134" VerticalAlignment="Top" Width="270">
+                <Grid Background="Transparent">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.4*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <Image Grid.Column="0" Grid.RowSpan="6" Margin="5" Source="{Binding Boots.Image}" Width="100" Height="100" />
+                    <TextBlock Grid.Column="1" Grid.Row="0" Margin="5" Text="{Binding Boots.Name}" FontWeight="Heavy" />
+                    <TextBlock Grid.Column="1" Grid.Row="1" Margin="5,0">
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{}Type: {0}">
+                                <Binding Path="Boots.Type" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                    <TextBlock Grid.Column="1" Grid.Row="2" Margin="5,0">
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{}Value: {0}G">
+                                <Binding Path="Boots.Value" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                    <TextBlock Grid.Column="1" Grid.Row="3" Margin="5,0">
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{}Strength: {0}">
+                                <Binding Path="Boots.Strength" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                    <TextBlock Grid.Column="1" Grid.Row="4" Margin="5,0">
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{}Intelligence: {0}">
+                                <Binding Path="Boots.Intelligence" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                    <TextBlock Grid.Column="1" Grid.Row="5" Margin="5,0">
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{}Agility: {0}">
+                                <Binding Path="Boots.Agility" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                </Grid>
+            </Label>
+            <Rectangle HorizontalAlignment="Left" Height="1" Margin="442,109,-174,0" Stroke="Aqua" VerticalAlignment="Top" Width="44" RenderTransformOrigin="0.5,0.5">
                 <Rectangle.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform ScaleY="-1"/>
@@ -35,27 +344,27 @@
                     </TransformGroup>
                 </Rectangle.RenderTransform>
             </Rectangle>
-            <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="1" Margin="57,100,0,0" Stroke="Black" VerticalAlignment="Top" Width="36" RenderTransformOrigin="0.5,0.5">
+            <Rectangle  HorizontalAlignment="Left" Height="1" Margin="415,193,-205,0" Stroke="Aqua" VerticalAlignment="Top" Width="102" RenderTransformOrigin="0.5,0.5">
                 <Rectangle.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform ScaleY="-1"/>
                         <SkewTransform/>
-                        <RotateTransform Angle="-17.195"/>
+                        <RotateTransform Angle="15.899"/>
                         <TranslateTransform/>
                     </TransformGroup>
                 </Rectangle.RenderTransform>
             </Rectangle>
-            <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="1" Margin="65,229,0,0" Stroke="Black" VerticalAlignment="Top" Width="22" RenderTransformOrigin="0.5,0.5">
+            <Rectangle HorizontalAlignment="Left" Height="1" Margin="435,341,-220,0" Stroke="Aqua" VerticalAlignment="Top" Width="97" RenderTransformOrigin="0.5,0.5">
                 <Rectangle.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform ScaleY="-1"/>
                         <SkewTransform/>
-                        <RotateTransform Angle="17.18"/>
+                        <RotateTransform Angle="-10.218"/>
                         <TranslateTransform/>
                     </TransformGroup>
                 </Rectangle.RenderTransform>
             </Rectangle>
-            <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="1" Margin="211,292,0,0" Stroke="Black" VerticalAlignment="Top" Width="36" RenderTransformOrigin="0.5,0.5">
+            <Rectangle HorizontalAlignment="Left" Height="1" Margin="600,413,-438,-45" Stroke="Aqua" VerticalAlignment="Top" Width="150" RenderTransformOrigin="0.5,0.5">
                 <Rectangle.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform ScaleY="-1"/>
@@ -65,27 +374,65 @@
                     </TransformGroup>
                 </Rectangle.RenderTransform>
             </Rectangle>
-            <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="1" Margin="199,156,0,0" Stroke="Black" VerticalAlignment="Top" Width="35" RenderTransformOrigin="0.5,0.5">
+            <Rectangle HorizontalAlignment="Left" Height="1" Margin="597,247,-426,0" Stroke="Aqua" VerticalAlignment="Top" Width="141" RenderTransformOrigin="0.5,0.5">
                 <Rectangle.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform ScaleY="-1"/>
                         <SkewTransform/>
-                        <RotateTransform Angle="37.543"/>
+                        <RotateTransform Angle="9.04"/>
                         <TranslateTransform/>
                     </TransformGroup>
                 </Rectangle.RenderTransform>
             </Rectangle>
-            <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="1" Margin="220,54,0,0" Stroke="Black" VerticalAlignment="Top" Width="36" RenderTransformOrigin="0.5,0.5">
+            <Rectangle HorizontalAlignment="Left" Height="1" Margin="599,136,-410,0" Stroke="Aqua" VerticalAlignment="Top" Width="123" RenderTransformOrigin="0.5,0.5">
                 <Rectangle.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform ScaleY="-1"/>
                         <SkewTransform/>
-                        <RotateTransform Angle="17.18"/>
+                        <RotateTransform Angle="-0.796"/>
                         <TranslateTransform/>
                     </TransformGroup>
                 </Rectangle.RenderTransform>
             </Rectangle>
         </Grid>
-
+        <ComboBox Margin="818,563,10.2,9.6" ItemsSource="{Binding Loadouts}" SelectedItem="{Binding SelectedLoadout, Mode=TwoWay}">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Name}" />
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+        <Label Margin="10,525,845.2,9.6">
+            <StackPanel>
+                <TextBlock Margin="5,0">
+                    <TextBlock.Text>
+                        <MultiBinding StringFormat="{}Strength: {0}">
+                            <Binding Path="TotalStrength" />
+                        </MultiBinding>
+                    </TextBlock.Text>
+                </TextBlock>
+                <TextBlock Margin="5,0">
+                    <TextBlock.Text>
+                        <MultiBinding StringFormat="{}Intelligence: {0}">
+                            <Binding Path="TotalIntelligence" />
+                        </MultiBinding>
+                    </TextBlock.Text>
+                </TextBlock>
+                <TextBlock Margin="5,0">
+                    <TextBlock.Text>
+                        <MultiBinding StringFormat="{}Agility: {0}">
+                            <Binding Path="TotalAgility" />
+                        </MultiBinding>
+                    </TextBlock.Text>
+                </TextBlock>
+                <TextBlock Margin="5,0" FontWeight="Heavy">
+                    <TextBlock.Text>
+                        <MultiBinding StringFormat="{}Gear value: {0}G">
+                            <Binding Path="TotalValue" />
+                        </MultiBinding>
+                    </TextBlock.Text>
+                </TextBlock>
+            </StackPanel>
+        </Label>
     </Grid>
 </Window>

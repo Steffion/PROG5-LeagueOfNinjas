@@ -71,7 +71,7 @@ namespace PROG5_LeagueOfNinjas.ViewModel
         {
             get
             {
-                return ServiceLocator.Current.GetInstance<NinjaVisualViewModel>();
+                return new NinjaVisualViewModel(Database);
             }
         }
 

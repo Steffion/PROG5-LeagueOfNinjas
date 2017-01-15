@@ -31,6 +31,9 @@
             <Style TargetType="{x:Type Grid}">
                 <Setter Property="Background" Value="Black"/>
             </Style>
+            <Style TargetType="{x:Type Rectangle}">
+                <Setter Property="Fill" Value="#a0ffff"/>
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
 </Application>
