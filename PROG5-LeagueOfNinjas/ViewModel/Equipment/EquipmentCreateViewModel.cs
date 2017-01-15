@@ -19,161 +19,59 @@ namespace PROG5_LeagueOfNinjas.ViewModel.Equipment
 {
     public class EquipmentCreateViewModel : ViewModelBase
     {
-        private Data.Equipment _equipment;
-        private string _equipmentName;
-        private int _equipmentValue;
-        private int _equipmentStr;
-        private int _equipmentInt;
-        private int _equipmentAgl;
-        private byte[] _equipmentImage;
-        private EquipmentListViewModel _listViewModel;
         private Entities _database;
+        private EquipmentListViewModel _viewModel;
 
-        public ICommand CancelCommand { get; set; }
+        public Data.Equipment Equipment { get; set; }
+        public List<Category> EquipmentTypes { get; set; }
         public ICommand SaveCommand { get; set; }
-        public ICommand openFileCommand { get; set; }
+        public ICommand CancelCommand { get; set; }
+        public ICommand SelectImageCommand { get; set; }
+        public byte[] EquipmentImage { get; set; }
 
-        public EquipmentCreateViewModel(EquipmentListViewModel listViewModel, Entities database)
+        public EquipmentCreateViewModel(EquipmentListViewModel viewModel, Entities database)
         {
-            _equipment = new Data.Equipment();
-            _equipmentName = "New Item";
-            _equipmentValue = 500;
-            _equipmentStr = 10;
-            _equipmentInt = 10;
-            _equipmentAgl = 10;
-            _listViewModel = listViewModel;
             _database = database;
+            _viewModel = viewModel;
 
-            CancelCommand = new RelayCommand(Cancel);
+            Equipment = new Data.Equipment();
+            EquipmentTypes = database.Categories.ToList();
+
             SaveCommand = new RelayCommand(Save);
-            openFileCommand = new RelayCommand(openFile);
-        }
+            CancelCommand = new RelayCommand(Cancel);
+            SelectImageCommand = new RelayCommand(SelectImage);
 
-        public Data.Equipment Equipment
-        {
-            get
-            {
-                return _equipment;
-            }
-
-            set
-            {
-                _equipment = value;
-                RaisePropertyChanged("Equipment");
-            }
-        }
-
-        public string EquipmentName
-        {
-            get
-            {
-                return _equipmentName;
-            }
-
-            set
-            {
-                _equipmentName = value;
-                RaisePropertyChanged("EquipmentName");
-            }
-        }
-
-        public int EquipmentValue
-        {
-            get
-            {
-                return _equipmentValue;
-            }
-
-            set
-            {
-                _equipmentValue = value;
-                RaisePropertyChanged("EquipmentValue");
-            }
-        }
-
-        public int EquipmentStr
-        {
-            get
-            {
-                return _equipmentStr;
-            }
-
-            set
-            {
-                _equipmentStr = value;
-                RaisePropertyChanged("EquipmentStr");
-            }
-        }
-
-        public int EquipmentInt
-        {
-            get
-            {
-                return _equipmentInt;
-            }
-
-            set
-            {
-                _equipmentInt = value;
-                RaisePropertyChanged("EquipmentInt");
-            }
-        }
-
-        public int EquipmentAgl
-        {
-            get
-            {
-                return _equipmentAgl;
-            }
-
-            set
-            {
-                _equipmentAgl = value;
-                RaisePropertyChanged("EquipmentAgl");
-            }
-        }
-
-        public bool isImageEmpty
-        {
-            get
-            {
-                if (_equipmentImage != null)
-                {
-                    return false;
-                }
-                return true;
-            }
-        }
-
-        public void openFile()
-        {
-            System.Windows.Forms.OpenFileDialog fileDialog = new System.Windows.Forms.OpenFileDialog();
-            fileDialog.Filter = "Image files (*.jpg, *.jpeg, *.jpe, *.jfif, *.png) | *.jpg; *.jpeg; *.jpe; *.jfif; *.png";
-            DialogResult result = fileDialog.ShowDialog();
-            if (result == DialogResult.OK)
-            {
-                _equipmentImage = ImageHandler.ConvertToByteArray(fileDialog.OpenFile());
-                RaisePropertyChanged("isImageEmpty");
-            }
-            
-        }
-
-        public void Cancel()
-        {
-            _listViewModel.CloseCreateEquipment();
+            Equipment.Name = "New Item";
+            Equipment.Category = EquipmentTypes.First();
+            Equipment.Value = 1;
         }
 
         public void Save()
         {
-            _equipment.Name = EquipmentName;
-            _equipment.Value = EquipmentValue;
-            _equipment.Strength = EquipmentStr;
-            _equipment.Intelligence = EquipmentInt;
-            _equipment.Agility = EquipmentAgl;
-            _equipment.Image = _equipmentImage;
-            _database.Equipments.Add(_equipment);
+            Equipment.Image = EquipmentImage;
+
+            _database.Equipments.Add(Equipment);
             _database.SaveChanges();
-            _listViewModel.CloseCreateEquipment();
+            _viewModel.CloseCreateEquipment();
+        }
+
+        public void Cancel()
+        {
+            _viewModel.CloseCreateEquipment();
+        }
+
+        public void SelectImage()
+        {
+            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+            dlg.Filter = "Image Files|*.jpeg;*.jpg;*.png;*.gif";
+
+            Nullable<bool> result = dlg.ShowDialog();
+
+            if (result == true)
+            {
+                EquipmentImage = ImageHandler.ConvertToByteArray(dlg.OpenFile());
+                RaisePropertyChanged("EquipmentImage");
+            }
         }
     }
 }

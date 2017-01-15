@@ -27,8 +27,8 @@ namespace PROG5_LeagueOfNinjas.ViewModel.Equipment
         {
             _database = database;
 
-            EquipmentEditCommand = new RelayCommand(editEquipment);
-            EquipmentCreateCommand = new RelayCommand(CreateEquipment);
+            EquipmentEditCommand = new RelayCommand(OpenEditEquipment);
+            EquipmentCreateCommand = new RelayCommand(OpenCreateEquipment);
             EquipmentDeleteCommand = new RelayCommand(DeleteEquipment);
 
         }
@@ -64,18 +64,19 @@ namespace PROG5_LeagueOfNinjas.ViewModel.Equipment
             }
         }
 
-        public void editEquipment()
+        public void OpenEditEquipment()
         {
             _editView = new EquipmentEditView();
             _editView.ShowDialog();
         }
 
-        public void closeEditEquipment()
+        public void CloseEditEquipment()
         {
             _editView.Close();
             RaisePropertyChanged("Equipment");
         }
-        public void CreateEquipment()
+
+        public void OpenCreateEquipment()
         {
             _createView = new EquipmentCreateView();
             _createView.ShowDialog();

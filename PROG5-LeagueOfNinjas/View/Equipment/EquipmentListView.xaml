@@ -14,14 +14,65 @@
         <ListBox Grid.Column="0" SelectedItem="{Binding SelectedEquipment}" ItemsSource="{Binding Equipment}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding Name}" />
+                    <Grid Background="Transparent">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.2*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        
+                        <Image Grid.Column="0" Grid.RowSpan="6" Margin="5" Source="{Binding Image}" Width="100" Height="100" />
+                        <TextBlock Grid.Column="1" Grid.Row="0" Margin="5" Text="{Binding Name}" FontWeight="Heavy" />
+                        <TextBlock Grid.Column="1" Grid.Row="1" Margin="5,0">
+                            <TextBlock.Text>
+                                <MultiBinding StringFormat="{}Type: {0}">
+                                    <Binding Path="Type" />
+                                </MultiBinding>
+                            </TextBlock.Text>
+                        </TextBlock>
+                        <TextBlock Grid.Column="1" Grid.Row="2" Margin="5,0">
+                            <TextBlock.Text>
+                                <MultiBinding StringFormat="{}Value: {0}G">
+                                    <Binding Path="Value" />
+                                </MultiBinding>
+                            </TextBlock.Text>
+                        </TextBlock>
+                        <TextBlock Grid.Column="1" Grid.Row="3" Margin="5,0">
+                            <TextBlock.Text>
+                                <MultiBinding StringFormat="{}Strength: {0}">
+                                    <Binding Path="Strength" />
+                                </MultiBinding>
+                            </TextBlock.Text>
+                        </TextBlock>
+                        <TextBlock Grid.Column="1" Grid.Row="4" Margin="5,0">
+                            <TextBlock.Text>
+                                <MultiBinding StringFormat="{}Intelligence: {0}">
+                                    <Binding Path="Intelligence" />
+                                </MultiBinding>
+                            </TextBlock.Text>
+                        </TextBlock>
+                        <TextBlock Grid.Column="1" Grid.Row="5" Margin="5,0">
+                            <TextBlock.Text>
+                                <MultiBinding StringFormat="{}Agility: {0}">
+                                    <Binding Path="Agility" />
+                                </MultiBinding>
+                            </TextBlock.Text>
+                        </TextBlock>
+                    </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
         <Grid Grid.Column="1">
-            <Button Grid.Row="0" VerticalAlignment="Top" Height="20" Margin="10,10,10,0" Command="{Binding EquipmentCreateCommand}"> Add Equipment</Button>
+            <Button Grid.Row="0" VerticalAlignment="Top" Height="20" Margin="10,10,10,0" Command="{Binding EquipmentCreateCommand}">Add Equipment</Button>
             <Button Grid.Row="0" VerticalAlignment="Top" Height="20" Margin="10,40,10,20" Command="{Binding EquipmentEditCommand}" IsEnabled="{Binding IsEquipmentSelected}">Edit Equipment</Button>
-            <Button Grid.Row="0" VerticalAlignment="Top" Height="20" Margin="10,70,10,20" Command="{Binding EquipmentDeleteCommand}" IsEnabled="{Binding IsEquipmentSelected}"> Delete Equipment </Button>
+            <Button Grid.Row="0" VerticalAlignment="Top" Height="20" Margin="10,70,10,20" Command="{Binding EquipmentDeleteCommand}" IsEnabled="{Binding IsEquipmentSelected}">Delete Equipment</Button>
         </Grid>
     </Grid>
 </UserControl>

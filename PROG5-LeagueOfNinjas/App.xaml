@@ -28,8 +28,8 @@
                 <Setter Property="BorderThickness" Value="1"/>
                 <Setter Property="BorderBrush" Value="#a0ffff"/>
             </Style>
-            <Style TargetType="{x:Type TextBlock}">
-                <Setter Property="Background" Value="White"/>
+            <Style TargetType="{x:Type Grid}">
+                <Setter Property="Background" Value="Black"/>
             </Style>
         </ResourceDictionary>
     </Application.Resources>

@@ -14,11 +14,11 @@ namespace PROG5_LeagueOfNinjas.Validation
         {
             try
             {
-                return new ValidationResult(int.Parse(value.ToString()) >= 1, "Dit moet hoger dan 0 zijn!");
+                return new ValidationResult(int.Parse(value.ToString()) >= 1, "This should be above 0.");
             }
             catch (Exception)
             {
-                return new ValidationResult(false, "Dit is geen geldig getal!");
+                return new ValidationResult(false, "This is not a valid number.");
             }
         }
     }

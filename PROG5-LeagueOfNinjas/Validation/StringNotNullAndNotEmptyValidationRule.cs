@@ -12,7 +12,7 @@ namespace PROG5_LeagueOfNinjas.Validation
     {
         public override ValidationResult Validate(object value, CultureInfo cultureInfo)
         {
-            return new ValidationResult(!String.IsNullOrEmpty(value.ToString()), "Dit kan mag niet leeg zijn!");
+            return new ValidationResult(!String.IsNullOrEmpty(value.ToString()), "This field can not be empty.");
         }
     }
 }
