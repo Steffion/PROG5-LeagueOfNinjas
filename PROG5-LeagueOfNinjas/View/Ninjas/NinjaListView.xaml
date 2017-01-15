@@ -14,7 +14,16 @@
         <ListBox Grid.Column="0" SelectedItem="{Binding SelectedNinja}" ItemsSource="{Binding Ninjas}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding Name}" />
+                    <StackPanel>
+                        <TextBlock Margin="5" Text="{Binding Name}" FontWeight="Heavy" />
+                        <TextBlock Margin="5,0">
+                            <TextBlock.Text>
+                                <MultiBinding StringFormat="{}Gold: {0}G">
+                                    <Binding Path="Gold" />
+                                </MultiBinding>
+                            </TextBlock.Text>
+                        </TextBlock>
+                    </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
