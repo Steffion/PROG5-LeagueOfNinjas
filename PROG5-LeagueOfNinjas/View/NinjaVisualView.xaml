@@ -10,7 +10,7 @@
     <Grid>
         <Grid HorizontalAlignment="Left" Height="369" VerticalAlignment="Top" Width="312">
             <Image Source="/Resources/Shen.png" Margin="317,44,-484,-157"/>
-            <Label HorizontalAlignment="Left" Height="134" Margin="195,10,-135,0" VerticalAlignment="Top" Width="252">
+            <Label HorizontalAlignment="Left" Height="134" Margin="37,14,-97,0" VerticalAlignment="Top" Width="372">
                 <Grid Background="Transparent">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="0.4*" />
@@ -64,7 +64,7 @@
                     </TextBlock>
                 </Grid>
             </Label>
-            <Label  HorizontalAlignment="Left" Height="128" Margin="195,159,-123,0" VerticalAlignment="Top" Width="240">
+            <Label  HorizontalAlignment="Left" Height="128" Margin="37,187,-97,0" VerticalAlignment="Top" Width="372">
                 <Grid Background="Transparent">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="0.4*" />
@@ -118,7 +118,7 @@
                     </TextBlock>
                 </Grid>
             </Label>
-            <Label HorizontalAlignment="Left" Height="147" Margin="197,287,-123,-65" VerticalAlignment="Top" Width="238">
+            <Label HorizontalAlignment="Left" Height="147" Margin="37,351,-97,-129" VerticalAlignment="Top" Width="372">
                 <Grid Background="Transparent">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="0.4*" />
@@ -172,7 +172,7 @@
                     </TextBlock>
                 </Grid>
             </Label>
-            <Label HorizontalAlignment="Left" Height="138" Margin="726,92,-702,0" VerticalAlignment="Top" Width="288">
+            <Label HorizontalAlignment="Left" Height="138" Margin="744,10,-738,0" VerticalAlignment="Top" Width="306">
                 <Grid Background="Transparent">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="0.4*" />
@@ -226,7 +226,7 @@
                     </TextBlock>
                 </Grid>
             </Label>
-            <Label HorizontalAlignment="Left" Height="134" Margin="744,235,-702,0" VerticalAlignment="Top" Width="270">
+            <Label HorizontalAlignment="Left" Height="134" Margin="744,187,-738,0" VerticalAlignment="Top" Width="306">
                 <Grid Background="Transparent">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="0.4*" />
@@ -280,7 +280,7 @@
                     </TextBlock>
                 </Grid>
             </Label>
-            <Label HorizontalAlignment="Left" Height="152" Margin="744,351,-702,-134" VerticalAlignment="Top" Width="270">
+            <Label HorizontalAlignment="Left" Height="152" Margin="744,351,-738,-134" VerticalAlignment="Top" Width="306">
                 <Grid Background="Transparent">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="0.4*" />
