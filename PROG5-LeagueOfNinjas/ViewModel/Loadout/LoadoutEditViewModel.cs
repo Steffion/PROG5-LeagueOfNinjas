@@ -24,6 +24,7 @@ namespace PROG5_LeagueOfNinjas.ViewModel.Loadout
         private ICollection<LoadoutItem> _allLoadoutItems;
         private ICollection<LoadoutItem> _finalLoadOut;
         private List<LoadoutItem> _itemList;
+        private List<LoadoutItem> _removedItemList;
 
         public ICommand CancelCommand { get; set; }
         public ICommand SaveCommand { get; set; }
@@ -37,6 +38,7 @@ namespace PROG5_LeagueOfNinjas.ViewModel.Loadout
             _listViewModel = listViewModel;
             _database = database;
             _allLoadoutItems = _loadout.LoadoutItems;
+            _removedItemList = new List<LoadoutItem>();
 
             CancelCommand = new RelayCommand(Cancel);
             SaveCommand = new RelayCommand(Save);
@@ -130,6 +132,7 @@ namespace PROG5_LeagueOfNinjas.ViewModel.Loadout
                 {
                     _allLoadoutItems.Remove(item);
                     _itemList.Remove(item);
+                    _removedItemList.Add(item);
                     break;
                 }
             }
@@ -188,6 +191,10 @@ namespace PROG5_LeagueOfNinjas.ViewModel.Loadout
 
         public void Save()
         {
+            foreach (var removedItem in _removedItemList)
+            {
+                _database.LoadoutItems.Remove(removedItem);
+            }
             _database.Loadouts.Remove(_loadout);
             _database.SaveChanges();
             _loadout.Name = LoadoutName;
