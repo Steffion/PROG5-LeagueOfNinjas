@@ -11,7 +11,7 @@
             <ColumnDefinition Width="0.5*" />
             <ColumnDefinition Width="0.5*" />
         </Grid.ColumnDefinitions>
-        <ListBox Grid.Column="0" SelectedItem="{Binding SelectedLoadouts}" ItemsSource="{Binding Loadouts}">
+        <ListBox Grid.Column="0" SelectedItem="{Binding SelectedLoadout}" ItemsSource="{Binding Loadouts}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding Name}" />

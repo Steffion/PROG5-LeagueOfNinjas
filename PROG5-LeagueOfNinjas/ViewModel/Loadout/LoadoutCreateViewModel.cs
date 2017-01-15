@@ -48,6 +48,10 @@ namespace PROG5_LeagueOfNinjas.ViewModel.Loadout
         {
             _newItem = new LoadoutItem();
             _newItem.Equipment = selectedItem.Id;
+            _newItem.Equipment1 = selectedItem;
+            _newItem.Loadout = _loadout.Id;
+            _newItem.Loadout1 = _loadout;
+
             _loadOutList.Add(_newItem);
 
             RaisePropertyChanged("addItem");
@@ -77,6 +81,22 @@ namespace PROG5_LeagueOfNinjas.ViewModel.Loadout
             get { return _loadOutList != null; }
         }
 
+        public bool isDifferentCategory
+        {
+            get
+            {
+                bool diffCategory = true;
+                foreach (var item in _loadOutList)
+                {
+                    if (item.Equipment1.Category == _selectedItem.Category)
+                    {
+                        diffCategory = false;
+                    }
+                }
+                return diffCategory;
+            }
+        }
+
         public Data.Equipment selectedItem
         {
             get
@@ -88,6 +108,7 @@ namespace PROG5_LeagueOfNinjas.ViewModel.Loadout
                 _selectedItem = value;
                 RaisePropertyChanged("selectedItem");
                 RaisePropertyChanged("isItemSeleceted");
+                RaisePropertyChanged("isDifferentCategory");
             }
         }
 
