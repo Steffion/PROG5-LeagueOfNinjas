@@ -8,6 +8,7 @@
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         Title="Edit equipment"
+        Height="500" Width="300"
         DataContext="{Binding Source={StaticResource Locator}, Path=EquipmentEditViewModel}">
     <Grid>
         <Grid.RowDefinitions>
