@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PROG5_LeagueOfNinjas.View.Ninjas"
         mc:Ignorable="d"
         DataContext="{Binding Source={StaticResource Locator}, Path=NinjaListViewModel}">
-    <Grid>
+    <Grid Background="black">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.5*" />
             <ColumnDefinition Width="0.5*" />

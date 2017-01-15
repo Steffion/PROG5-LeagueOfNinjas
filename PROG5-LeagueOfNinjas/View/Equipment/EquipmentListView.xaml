@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PROG5_LeagueOfNinjas.View.Equipment"
         mc:Ignorable="d"
         DataContext="{Binding Source={StaticResource Locator}, Path=EquipmentListViewModel}">
-    <Grid>
+    <Grid Background="black">
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
             <ColumnDefinition Width="246" />
