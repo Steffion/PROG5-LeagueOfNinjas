@@ -6,11 +6,11 @@
         xmlns:local="clr-namespace:PROG5_LeagueOfNinjas"
         mc:Ignorable="d"
         DataContext="{Binding Source={StaticResource Locator}, Path=ShopViewModel}">
-    <Grid Background="black">
+    <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.3*" />
-            <ColumnDefinition Width="0.3*" />
-            <ColumnDefinition Width="0.3*" />
+            <ColumnDefinition Width="0.2*" />
+            <ColumnDefinition Width="0.4*" />
+            <ColumnDefinition Width="0.4*" />
         </Grid.ColumnDefinitions>
         <ListBox Grid.Column="0" ItemsSource="{Binding Categories}" SelectedItem="{Binding SelectedCategory}">
             <ListBox.ItemTemplate>
@@ -22,7 +22,50 @@
         <ListBox Grid.Column="1" ItemsSource="{Binding Equipment, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedEquipment}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding Name}" />
+                    <Grid Background="Transparent">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.2*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <Image Grid.Column="0" Grid.RowSpan="6" Margin="5" Source="{Binding Image}" Width="100" Height="100" />
+                        <TextBlock Grid.Column="1" Grid.Row="0" Margin="5" Text="{Binding Name}" FontWeight="Heavy" />
+                        <TextBlock Grid.Column="1" Grid.Row="1" Margin="5,0">
+                            <TextBlock.Text>
+                                <MultiBinding StringFormat="{}Value: {0}G">
+                                    <Binding Path="Value" />
+                                </MultiBinding>
+                            </TextBlock.Text>
+                        </TextBlock>
+                        <TextBlock Grid.Column="1" Grid.Row="2" Margin="5,0">
+                            <TextBlock.Text>
+                                <MultiBinding StringFormat="{}Strength: {0}">
+                                    <Binding Path="Strength" />
+                                </MultiBinding>
+                            </TextBlock.Text>
+                        </TextBlock>
+                        <TextBlock Grid.Column="1" Grid.Row="3" Margin="5,0">
+                            <TextBlock.Text>
+                                <MultiBinding StringFormat="{}Intelligence: {0}">
+                                    <Binding Path="Intelligence" />
+                                </MultiBinding>
+                            </TextBlock.Text>
+                        </TextBlock>
+                        <TextBlock Grid.Column="1" Grid.Row="4" Margin="5,0">
+                            <TextBlock.Text>
+                                <MultiBinding StringFormat="{}Agility: {0}">
+                                    <Binding Path="Agility" />
+                                </MultiBinding>
+                            </TextBlock.Text>
+                        </TextBlock>
+                    </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
