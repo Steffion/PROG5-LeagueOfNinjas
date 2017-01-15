@@ -14,16 +14,13 @@ namespace PROG5_LeagueOfNinjas.ViewModel
         private Entities _database;
         private Bitmap _headImage;
         private MainViewModel _mainView;
-        private Ninja _ninja;
+        private Ninja _currentNinja;
 
-        public NinjaVisualViewModel(Entities database, MainViewModel mainView)
+        public NinjaVisualViewModel(Entities database)
         {
             _database = database;
-            _mainView = mainView;
 
-            _ninja = mainView.SelectedNinja;
-
-            
+            _currentNinja = MainViewModel.CurrentNinja;
         }
 
         public Bitmap headImage

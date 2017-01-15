@@ -14,22 +14,22 @@ namespace PROG5_LeagueOfNinjas.ViewModel
     public class ShopViewModel : ViewModelBase
     {
         private Entities _database;
+        private Ninja _currentNinja;
         private Category _selectedCategory;
         private Data.Equipment _selectedEquipment;
 
         public ShopViewModel(Entities database)
         {
             _database = database;
+            _currentNinja = MainViewModel.CurrentNinja;
 
-            Categories = new List<Category>(_database.Categories);
+            Categories = new ObservableCollection<Category>(_database.Categories);
 
             BuyCommand = new RelayCommand(Buy);
         }
 
-        public List<Category> Categories { get; set; }
-
+        public ObservableCollection<Category> Categories { get; set; }
         public ObservableCollection<Data.Equipment> Equipment { get; set; }
-
         public ICommand BuyCommand { get; set; }
         public ICommand RefreshCommand { get; set; }
 
@@ -85,7 +85,7 @@ namespace PROG5_LeagueOfNinjas.ViewModel
 
         public void UpdateEquipment()
         {
-            if (MainViewModel.CurrentNinja == null)
+            if (_currentNinja == null)
             {
                 Equipment = new ObservableCollection<Data.Equipment>();
                 RaisePropertyChanged("Equipment");
@@ -100,7 +100,7 @@ namespace PROG5_LeagueOfNinjas.ViewModel
 
                 bool bought = false;
 
-                foreach (var purchasedItem in MainViewModel.CurrentNinja.PurchasedItems)
+                foreach (var purchasedItem in _currentNinja.PurchasedItems)
                 {
                     if (equipment.Id == purchasedItem.Equipment)
                     {
@@ -119,18 +119,18 @@ namespace PROG5_LeagueOfNinjas.ViewModel
 
         public void Buy()
         {
-            if (MainViewModel.CurrentNinja.Gold < SelectedEquipment.Value)
+            if (_currentNinja.Gold < SelectedEquipment.Value)
             {
                 MessageBox.Show("You don't have that much money!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
             PurchasedItem item = new PurchasedItem();
-            item.Ninja = MainViewModel.CurrentNinja.Id;
+            item.Ninja = _currentNinja.Id;
             item.Equipment = SelectedEquipment.Id;
             _database.PurchasedItems.Add(item);
 
-            MainViewModel.CurrentNinja.Gold -= SelectedEquipment.Value;
+            _currentNinja.Gold -= SelectedEquipment.Value;
 
             _database.SaveChanges();
 

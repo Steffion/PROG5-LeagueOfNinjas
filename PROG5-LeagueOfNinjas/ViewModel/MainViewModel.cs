@@ -19,12 +19,9 @@ namespace PROG5_LeagueOfNinjas.ViewModel
     public class MainViewModel : ViewModelBase
     {
         private Entities _database;
-        private Ninja _selectedNinja;
         private UserControl _currentView;
         private ViewFactory _viewFactory;
         private NinjaVisualView _visualView;
-
-        public static Ninja CurrentNinja { get; set; }
 
         public MainViewModel(Entities database)
         {
@@ -32,39 +29,20 @@ namespace PROG5_LeagueOfNinjas.ViewModel
             _viewFactory = new ViewFactory();
             OpenNinjas();
 
-            Ninjas = new ObservableCollection<Ninja>(_database.Ninjas);
-
             OpenNinjasCommand = new RelayCommand(OpenNinjas);
             OpenShopCommand = new RelayCommand(OpenShop);
             OpenLoadoutCommand = new RelayCommand(OpenLoadout);
             OpenEquipmentCommand = new RelayCommand(OpenEquipment);
-            RefreshCommand = new RelayCommand(Refresh);
             OpenVisualNinjaCommand = new RelayCommand(OpenVisual);
         }
 
-        public ObservableCollection<Ninja> Ninjas { get; set; }
-        
+        public static Ninja CurrentNinja { get; set; }
         public ICommand OpenNinjasCommand { get; set; }
         public ICommand OpenShopCommand { get; set; }
         public ICommand OpenLoadoutCommand { get; set; }
         public ICommand OpenEquipmentCommand { get; set; }
         public ICommand RefreshCommand { get; set; }
         public ICommand OpenVisualNinjaCommand { get; set; }
-
-        public Ninja SelectedNinja
-        {
-            get
-            {
-                return CurrentNinja;
-            }
-
-            set
-            {
-                CurrentNinja = value;
-                RaisePropertyChanged("SelectedNinja");
-                RaisePropertyChanged("isNinjaSelected");
-            }
-        }
 
         public UserControl CurrentView
         {
@@ -77,18 +55,6 @@ namespace PROG5_LeagueOfNinjas.ViewModel
             {
                 _currentView = value;
                 RaisePropertyChanged("CurrentView");
-            }
-        }
-
-        public bool isNinjaSelected
-        {
-            get
-            {
-                if (CurrentNinja != null)
-                {
-                    return true;
-                }
-                return false;
             }
         }
 
@@ -116,12 +82,6 @@ namespace PROG5_LeagueOfNinjas.ViewModel
         {
             _visualView = new NinjaVisualView();
             _visualView.Show();
-        }
-
-        public void Refresh()
-        {
-            Ninjas = new ObservableCollection<Ninja>(_database.Ninjas);
-            RaisePropertyChanged("Ninjas");
         }
     }
 }

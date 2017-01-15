@@ -10,11 +10,13 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace PROG5_LeagueOfNinjas
+namespace PROG5_LeagueOfNinjas.View
 {
+    /// <summary>
+    /// Interaction logic for ShopView.xaml
+    /// </summary>
     public partial class ShopView : UserControl
     {
         public ShopView()
